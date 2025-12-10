@@ -1,0 +1,36 @@
+= checky-monkey - Citation Guide
+:toc:
+
+== BibTeX
+
+[source,bibtex]
+----
+@software{checky-monkey_2025,
+  author = {Polymath, Hyper},
+  title = {checky-monkey},
+  year = {2025},
+  url = {https://github.com/hyperpolymath/checky-monkey},
+  license = {AGPL-3.0-or-later}
+}
+----
+
+== Harvard Style
+
+Polymath, H. (2025) _checky-monkey_ [Computer software]. Available at: https://github.com/hyperpolymath/checky-monkey
+
+== OSCOLA
+
+Hyper Polymath, 'checky-monkey' (2025) <https://github.com/hyperpolymath/checky-monkey>
+
+== MLA
+
+Polymath, Hyper. "checky-monkey." 2025, github.com/hyperpolymath/checky-monkey.
+
+== APA 7
+
+Polymath, H. (2025). _checky-monkey_ [Computer software]. GitHub. https://github.com/hyperpolymath/checky-monkey
+
+== See Also
+
+* link:../CITATION.cff[CITATION.cff]
+* link:../codemeta.json[codemeta.json]
