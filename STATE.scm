@@ -15,7 +15,7 @@
   '((version . "0.1.0")
     (schema-version . "1.0")
     (created . "2025-12-15")
-    (updated . "2025-12-15")
+    (updated . "2025-12-18")
     (project . "checky-monkey")
     (repo . "github.com/hyperpolymath/checky-monkey")))
 
@@ -41,7 +41,7 @@
 
 (define current-position
   '((phase . "v0.1 - Initial Setup and RSR Compliance")
-    (overall-completion . 25)
+    (overall-completion . 35)
 
     (components
      ((rsr-compliance
@@ -49,10 +49,20 @@
         (completion . 100)
         (notes . "SHA-pinned actions, SPDX headers, multi-platform CI")))
 
+      (security
+       ((status . "complete")
+        (completion . 100)
+        (notes . "RFC 9116 security.txt, wellknown-enforcement, no weak crypto")))
+
+      (package-management
+       ((status . "complete")
+        (completion . 100)
+        (notes . "guix.scm (primary), flake.nix (fallback), npm/bun blocked")))
+
       (documentation
        ((status . "foundation")
-        (completion . 30)
-        (notes . "README exists, META/ECOSYSTEM/STATE.scm added")))
+        (completion . 40)
+        (notes . "README, META/ECOSYSTEM/STATE.scm, RSR_COMPLIANCE updated")))
 
       (testing
        ((status . "minimal")
@@ -68,7 +78,11 @@
      ("RSR-compliant CI/CD pipeline"
       "Multi-platform mirroring (GitHub, GitLab, Bitbucket)"
       "SPDX license headers on all files"
-      "SHA-pinned GitHub Actions"))))
+      "SHA-pinned GitHub Actions"
+      "RFC 9116 security.txt with valid expiry"
+      "Guix primary + Nix fallback package management"
+      "npm/bun blocker workflow"
+      "Workflow security linter"))))
 
 ;;;============================================================================
 ;;; ROUTE TO MVP
@@ -151,6 +165,15 @@
 
 (define session-history
   '((snapshots
+     ((date . "2025-12-18")
+      (session . "security-review-and-scm-fixes")
+      (accomplishments
+       ("Fixed security.txt expiry date (RFC 9116 compliance)"
+        "Created flake.nix (Nix fallback for RSR)"
+        "Updated RSR_COMPLIANCE.adoc status"
+        "Updated STATE.scm with current roadmap"
+        "Verified all CI/CD workflows"))
+      (notes . "Security audit and SCM file review"))
      ((date . "2025-12-15")
       (session . "initial-state-creation")
       (accomplishments
@@ -185,10 +208,10 @@
 (define state-summary
   '((project . "checky-monkey")
     (version . "0.1.0")
-    (overall-completion . 25)
+    (overall-completion . 35)
     (next-milestone . "v0.2 - Core Functionality")
     (critical-blockers . 0)
     (high-priority-issues . 0)
-    (updated . "2025-12-15")))
+    (updated . "2025-12-18")))
 
 ;;; End of STATE.scm

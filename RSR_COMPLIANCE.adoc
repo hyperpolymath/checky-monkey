@@ -13,10 +13,10 @@ This document describes the Rhodium Standard Repository (RSR) compliance status 
 |Attribute |Value
 
 |Project |checky-monkey
-|Primary Language |unknown
-|RSR Tier |N/A
-|Compliance Status |Review Needed
-|Last Updated |2025-12-10
+|Primary Language |Guile Scheme
+|RSR Tier |Tier 2
+|Compliance Status |Gold Target
+|Last Updated |2025-12-17
 |===
 
 == Language Tier Classification
@@ -46,14 +46,14 @@ This document describes the Rhodium Standard Repository (RSR) compliance status 
 |===
 |Requirement |Status |Notes
 
-|Primary language is Tier 1/2 |✓ |unknown
+|Primary language is Tier 1/2 |✓ |Guile Scheme (Tier 2)
 |No restricted languages outside exemptions |✓ |
 |.editorconfig present |✓ |
 |.well-known/ directory |✓ |
-|justfile present |✗ |
-|LICENSE.txt (AGPL + Palimpsest) |✗ |
+|justfile present |✓ |
+|LICENSE.txt (AGPL + Palimpsest) |✓ |
 |Containerfile present |✗ |
-|flake.nix present |✗ |
+|flake.nix present |✓ |
 |===
 
 == Exemptions
@@ -62,9 +62,7 @@ None
 
 == Action Items
 
-* Add justfile
 * Add Containerfile
-* Add flake.nix
 
 == References
 
