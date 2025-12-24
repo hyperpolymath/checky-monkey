@@ -1,0 +1,1713 @@
+= Checky Monkey Roadmap
+:author: Hyper Polymath
+:email: hyperpolymath@proton.me
+:revnumber: 0.1.0
+:revdate: 2025
+:toc: macro
+:toc-title: Table of Contents
+:toclevels: 4
+:sectnums:
+:sectnumlevels: 4
+:icons: font
+:source-highlighter: rouge
+:experimental:
+:description: Development roadmap for Checky Monkey - the trust layer for the userscript ecosystem
+
+[.lead]
+This document outlines the development roadmap for Checky Monkey, from initial foundation through full ecosystem maturity. It is a living document that will evolve as the project progresses and community feedback is incorporated.
+
+[NOTE]
+====
+This roadmap focuses on *what* needs to be built, not *when*. Development proceeds based on contributor availability, community priorities, and technical dependencies. Features may be reordered based on emerging needs.
+====
+
+'''
+
+toc::[]
+
+'''
+
+== Roadmap Overview
+
+=== Vision Milestones
+
+[cols="1,2,4", options="header"]
+|===
+|Milestone |Name |Description
+
+|**M0**
+|Genesis
+|Project scaffolding, documentation, community infrastructure
+
+|**M1**
+|Foundation
+|Core parsing, basic validation, CLI tools
+
+|**M2**
+|Analysis Engine
+|Comprehensive multi-dimensional security and quality analysis
+
+|**M3**
+|Registry
+|Git-based registry with IPFS distribution
+
+|**M4**
+|Community
+|Web platform, ratings, reviews, behavioral reports
+
+|**M5**
+|Integration
+|Browser extension, script manager hooks
+
+|**M6**
+|Developer Experience
+|ADE, templates, testing framework
+
+|**M7**
+|AI Enhancement
+|SLM integration, ReScript transpilation
+
+|**M8**
+|Ecosystem
+|Full awesome-userscripts integration, Scaffoldia foundation
+|===
+
+=== Dependency Graph
+
+[source]
+----
+                                    ┌──────────────┐
+                                    │   M0: Genesis │
+                                    │  (Complete)   │
+                                    └───────┬───────┘
+                                            │
+                                    ┌───────▼───────┐
+                                    │ M1: Foundation│
+                                    │   (Current)   │
+                                    └───────┬───────┘
+                                            │
+                        ┌───────────────────┼───────────────────┐
+                        │                   │                   │
+                ┌───────▼───────┐   ┌───────▼───────┐   ┌───────▼───────┐
+                │ M2: Analysis  │   │  M3: Registry │   │M6: Dev Tools  │
+                │    Engine     │   │               │   │  (Parallel)   │
+                └───────┬───────┘   └───────┬───────┘   └───────┬───────┘
+                        │                   │                   │
+                        └─────────┬─────────┘                   │
+                                  │                             │
+                          ┌───────▼───────┐                     │
+                          │ M4: Community │◄────────────────────┘
+                          │   Platform    │
+                          └───────┬───────┘
+                                  │
+                          ┌───────▼───────┐
+                          │ M5: Browser   │
+                          │  Integration  │
+                          └───────┬───────┘
+                                  │
+                        ┌─────────┴─────────┐
+                        │                   │
+                ┌───────▼───────┐   ┌───────▼───────┐
+                │M7: AI Enhance │   │ M8: Ecosystem │
+                └───────────────┘   └───────────────┘
+----
+
+== M0: Genesis (Complete)
+
+=== Overview
+
+Initial project setup, documentation, and community infrastructure.
+
+=== Completed Items
+
+[cols="1,3,1", options="header"]
+|===
+|Item |Description |Status
+
+|Project Structure
+|Repository initialization, directory layout, basic configuration
+|Done
+
+|Licensing
+|Dual MIT/AGPL-3.0-or-later licensing with Palimpsest overlay
+|Done
+
+|Community Files
+|CODE_OF_CONDUCT.md, CONTRIBUTING.md, SECURITY.md
+|Done
+
+|CI/CD Foundation
+|GitHub Actions workflows, quality gates, security scanning
+|Done
+
+|Documentation Structure
+|README.adoc, ROADMAP.adoc, citation files
+|Done
+
+|Build System
+|Justfile with task definitions
+|Done
+|===
+
+== M1: Foundation
+
+=== Overview
+
+Core parsing capabilities, basic static analysis, local CLI tooling, and CUBS database foundation.
+
+=== Objectives
+
+* Parse and understand userscript/userstyle formats
+* Implement content-addressed storage
+* Provide local validation capabilities
+* Establish the Haskell project structure
+
+=== Deliverables
+
+==== 1.1 Haskell Project Scaffold
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Cabal/Stack Setup
+|Initialize Haskell project with proper dependency management, GHC 9.6+ target
+|Critical
+
+|Nix Flake
+|Reproducible development environment and builds via Nix
+|High
+
+|Module Structure
+|Establish clean module hierarchy: Core, Parser, Analysis, Storage, CLI
+|Critical
+
+|Property Testing
+|QuickCheck/Hedgehog setup for parser and core logic testing
+|High
+
+|CI Integration
+|Haskell-specific CI with caching, HLint, Fourmolu
+|High
+|===
+
+[source,haskell]
+----
+-- Proposed module structure
+CheckyMonkey
+├── Core
+│   ├── Types           -- Core domain types
+│   ├── ContentHash     -- Content addressing utilities
+│   └── Error           -- Error types and handling
+├── Parser
+│   ├── Userscript      -- Greasemonkey/Tampermonkey format
+│   ├── Userstyle       -- Stylus/UserCSS format
+│   ├── Metadata        -- Common metadata extraction
+│   └── AST             -- JavaScript/CSS AST handling
+├── Analysis
+│   ├── Engine          -- Analysis orchestration
+│   ├── Security        -- Security checks
+│   ├── Privacy         -- Privacy auditing
+│   └── Report          -- Report generation
+├── Storage
+│   ├── CUBS            -- Content-addressed storage
+│   ├── PostgreSQL      -- Metadata persistence
+│   └── Migration       -- Database migrations
+├── API
+│   ├── REST            -- REST endpoints via Servant
+│   ├── GraphQL         -- GraphQL schema and resolvers
+│   └── Types           -- API-specific types
+└── CLI
+    ├── Commands        -- CLI command implementations
+    ├── Options         -- optparse-applicative definitions
+    └── Output          -- Formatting and display
+----
+
+==== 1.2 Userscript Parser
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Metadata Parser
+|Parse `// ==UserScript==` ... `// ==/UserScript==` blocks
+|Critical
+
+|@grant Parser
+|Extract and categorize all GM_* and GM.* grants
+|Critical
+
+|@match/@include Parser
+|Parse URL patterns with glob and regex support
+|Critical
+
+|@require Parser
+|Extract external dependencies and their URLs
+|High
+
+|@resource Parser
+|Extract named resources (icons, data files)
+|Medium
+
+|Full Metadata Support
+|All standard and common extended metadata fields
+|High
+|===
+
+[source,haskell]
+----
+-- Parser API sketch
+parseUserscript :: ByteString -> Either ParseError Userscript
+
+data Userscript = Userscript
+  { metadata :: UserscriptMetadata
+  , code     :: JavaScriptAST
+  , raw      :: ByteString
+  }
+
+data UserscriptMetadata = UserscriptMetadata
+  { name         :: Text
+  , namespace    :: Maybe Text
+  , version      :: Maybe SemVer
+  , description  :: Maybe Text
+  , author       :: Maybe Text
+  , license      :: Maybe SPDX
+  , homepage     :: Maybe URL
+  , updateURL    :: Maybe URL
+  , downloadURL  :: Maybe URL
+  , icon         :: Maybe URL
+  , includes     :: [MatchPattern]
+  , excludes     :: [MatchPattern]
+  , matches      :: [MatchPattern]
+  , grants       :: [Grant]
+  , requires     :: [URL]
+  , resources    :: Map Text URL
+  , runAt        :: RunAt
+  , noframes     :: Bool
+  -- Extended metadata
+  , compatible   :: Map Browser VersionRange
+  , antifeatures :: [Antifeature]
+  , contributionURL :: Maybe URL
+  }
+----
+
+==== 1.3 Userstyle Parser
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|UserCSS Parser
+|Parse `/* ==UserStyle==` ... `==/UserStyle== */` format
+|High
+
+|@-moz-document Parser
+|Extract domain/URL targeting rules
+|High
+
+|@var Parser
+|Parse configurable variables (color, text, dropdown, etc.)
+|Medium
+
+|CSS Validation
+|Basic CSS syntax validation
+|Medium
+
+|Preprocessor Detection
+|Detect Stylus/LESS/SCSS preprocessing requirements
+|Low
+|===
+
+[source,haskell]
+----
+-- Userstyle parser types
+data Userstyle = Userstyle
+  { metadata   :: UserstyleMetadata
+  , stylesheet :: CSS
+  , variables  :: [StyleVariable]
+  , raw        :: ByteString
+  }
+
+data StyleVariable
+  = TextVar Text Text (Maybe Text)        -- name, label, default
+  | ColorVar Text Text Color              -- name, label, default
+  | SelectVar Text Text [(Text, Text)]    -- name, label, options
+  | CheckboxVar Text Text Bool            -- name, label, default
+  | RangeVar Text Text Double Double Double -- name, label, min, max, default
+----
+
+==== 1.4 CUBS Database
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Schema Design
+|PostgreSQL schema for metadata, relationships, analysis results
+|Critical
+
+|Content Store
+|File-based content-addressed blob storage
+|Critical
+
+|Migration System
+|Database migration framework (e.g., refinery, migrant)
+|High
+
+|Content Hashing
+|SHA-256 content addressing with collision handling
+|Critical
+
+|Deduplication
+|Efficient storage with deduplication across scripts
+|High
+
+|Query API
+|Haskell query interface for CUBS operations
+|High
+|===
+
+[source,sql]
+----
+-- Core CUBS schema (PostgreSQL)
+CREATE TABLE scripts (
+    id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    content_hash    BYTEA NOT NULL UNIQUE,  -- SHA-256
+    script_type     script_type NOT NULL,
+    created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at      TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE script_versions (
+    id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    script_id       UUID NOT NULL REFERENCES scripts(id),
+    content_hash    BYTEA NOT NULL,
+    version_string  TEXT,
+    metadata        JSONB NOT NULL,
+    created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    UNIQUE (script_id, content_hash)
+);
+
+CREATE TABLE analysis_reports (
+    id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    script_version  UUID NOT NULL REFERENCES script_versions(id),
+    analyzer_version TEXT NOT NULL,
+    overall_score   SMALLINT CHECK (overall_score BETWEEN 0 AND 100),
+    dimensions      JSONB NOT NULL,
+    findings        JSONB NOT NULL,
+    created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE provenance (
+    id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    script_version  UUID NOT NULL REFERENCES script_versions(id),
+    source_type     source_type NOT NULL,
+    source_url      TEXT,
+    fetched_at      TIMESTAMPTZ NOT NULL,
+    raw_response    JSONB
+);
+----
+
+==== 1.5 CLI Tool
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Command Framework
+|optparse-applicative based CLI with subcommands
+|Critical
+
+|validate Command
+|Analyze local script files with configurable checks
+|Critical
+
+|parse Command
+|Parse and display script metadata (debugging/exploration)
+|High
+
+|hash Command
+|Compute content hash for a script
+|Medium
+
+|Output Formats
+|JSON, YAML, human-readable, and CI-friendly formats
+|High
+
+|Verbosity Levels
+|Quiet, normal, verbose, debug output modes
+|Medium
+|===
+
+[source,bash]
+----
+# Planned CLI interface
+checky-monkey validate script.user.js
+checky-monkey validate --checks security,privacy script.user.js
+checky-monkey validate --format json script.user.js
+checky-monkey parse script.user.js
+checky-monkey parse --format yaml script.user.css
+checky-monkey hash script.user.js
+checky-monkey hash --algorithm sha256 script.user.js
+----
+
+=== Success Criteria
+
+* [ ] Parse 95%+ of scripts from Greasy Fork top-100
+* [ ] Parse 95%+ of styles from UserStyles.world top-100
+* [ ] CUBS can store and retrieve scripts with full provenance
+* [ ] CLI can validate local scripts with basic security checks
+* [ ] Full test coverage for parsers
+
+== M2: Analysis Engine
+
+=== Overview
+
+Comprehensive multi-dimensional analysis covering security, privacy, performance, accessibility, usability, compatibility, functionality, and dependability.
+
+=== Objectives
+
+* Deep security analysis for common vulnerabilities
+* Privacy auditing for tracking and data exfiltration
+* Performance profiling for resource usage
+* Accessibility verification for WCAG compliance
+* Compatibility matrix generation
+
+=== Deliverables
+
+==== 2.1 Security Analyzer
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Dangerous API Detection
+|Flag `eval`, `Function()`, `innerHTML`, `document.write`, etc.
+|Critical
+
+|XSS Pattern Detection
+|Identify potential cross-site scripting vulnerabilities
+|Critical
+
+|Injection Analysis
+|SQL, command, and LDAP injection pattern detection
+|Critical
+
+|Obfuscation Detection
+|Identify packed, minified, or intentionally obfuscated code
+|High
+
+|Known Malware Signatures
+|Database of known malicious patterns and behaviors
+|High
+
+|Permission Analysis
+|Risk scoring based on requested GM_* permissions
+|High
+
+|External Resource Audit
+|Analyze @require and @resource URLs for risks
+|High
+
+|CSP Compatibility
+|Check for Content Security Policy compliance
+|Medium
+|===
+
+[source,haskell]
+----
+-- Security analyzer types
+data SecurityFinding = SecurityFinding
+  { severity    :: Severity
+  , category    :: SecurityCategory
+  , title       :: Text
+  , description :: Text
+  , location    :: CodeLocation
+  , cweId       :: Maybe CWE
+  , remediation :: Maybe Text
+  }
+
+data SecurityCategory
+  = Injection
+  | XSS
+  | InsecureDeserialization
+  | DangerousAPI
+  | ObfuscatedCode
+  | MalwareSignature
+  | PermissionEscalation
+  | InsecureExternalResource
+  | CSPViolation
+  deriving (Show, Eq, Generic)
+
+data Severity = Critical | High | Medium | Low | Info
+  deriving (Show, Eq, Ord, Generic)
+----
+
+==== 2.2 Privacy Auditor
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Tracker Detection
+|Identify known tracking domains and pixels
+|Critical
+
+|Data Exfiltration Analysis
+|Detect patterns suggesting data theft
+|Critical
+
+|Cookie Analysis
+|Audit cookie access patterns
+|High
+
+|Storage Access Audit
+|localStorage, sessionStorage, IndexedDB access patterns
+|High
+
+|Fingerprinting Detection
+|Canvas, WebGL, audio context fingerprinting
+|High
+
+|Third-Party Communication
+|Catalog all external network requests
+|High
+
+|PII Handling Analysis
+|Detect potential personal information collection
+|Medium
+|===
+
+==== 2.3 Performance Profiler
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|DOM Query Analysis
+|Identify inefficient selectors and frequent DOM access
+|High
+
+|Mutation Observer Audit
+|Check for performance-impacting DOM observation
+|High
+
+|Memory Pattern Analysis
+|Detect potential memory leaks and excessive allocations
+|High
+
+|Event Listener Audit
+|Identify excessive or improperly managed listeners
+|Medium
+
+|Animation Analysis
+|Check for janky animations and layout thrashing
+|Medium
+
+|Network Request Patterns
+|Identify unnecessary or duplicate network requests
+|Medium
+
+|Blocking Operation Detection
+|Flag synchronous operations that block the main thread
+|High
+|===
+
+==== 2.4 Accessibility Checker
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|ARIA Usage Audit
+|Verify correct use of ARIA attributes
+|High
+
+|Focus Management
+|Check for proper focus handling in dynamic content
+|High
+
+|Keyboard Navigation
+|Verify keyboard accessibility of script-added elements
+|High
+
+|Color Contrast Impact
+|Analyze style changes for contrast issues
+|Medium
+
+|Screen Reader Compatibility
+|Check for screen reader announcements and live regions
+|Medium
+
+|Motion Sensitivity
+|Identify animations that may cause vestibular issues
+|Medium
+
+|Text Alternative Analysis
+|Verify images and icons have appropriate alt text
+|Medium
+|===
+
+==== 2.5 Compatibility Matrix
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Browser API Usage
+|Map used APIs to browser compatibility data
+|High
+
+|Script Manager Compatibility
+|Verify compatibility across TM, VM, GM, etc.
+|High
+
+|@match Pattern Validation
+|Validate patterns against script manager expectations
+|High
+
+|Conflict Detection
+|Identify potential conflicts with common scripts
+|Medium
+
+|Site-Specific Issues
+|Known issues with specific target sites
+|Medium
+
+|MV3 Compatibility
+|Flag APIs incompatible with Manifest V3
+|Medium
+|===
+
+==== 2.6 Analysis Orchestration
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Pipeline Architecture
+|Parallel analysis pipeline with result aggregation
+|Critical
+
+|Score Computation
+|Weighted scoring algorithm with confidence levels
+|Critical
+
+|Report Generation
+|Comprehensive report generation in multiple formats
+|High
+
+|Caching Layer
+|Cache analysis results for unchanged content
+|High
+
+|Incremental Analysis
+|Only re-analyze changed portions on updates
+|Medium
+
+|Plugin System
+|Allow community-contributed analyzers (Lua sandbox)
+|Medium
+|===
+
+=== Success Criteria
+
+* [ ] Detect 90%+ of OWASP Top 10 vulnerability patterns
+* [ ] Identify known tracker domains with 99%+ accuracy
+* [ ] Generate actionable remediation suggestions
+* [ ] Complete analysis in < 5 seconds for typical scripts
+* [ ] Support custom analysis rules via plugin system
+
+== M3: Registry & Distribution
+
+=== Overview
+
+Git-based script registry with IPFS distribution and integration with existing userscript repositories.
+
+=== Objectives
+
+* Provide authoritative registry for validated scripts
+* Enable decentralized distribution via IPFS
+* Integrate with Greasy Fork and OpenUserJS
+* Synchronize with awesome-userscripts
+
+=== Deliverables
+
+==== 3.1 Git Registry
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Repository Structure
+|Define git repository layout for scripts
+|Critical
+
+|Submission Workflow
+|PR-based script submission with automated validation
+|Critical
+
+|Version Management
+|Semantic versioning with automated tagging
+|High
+
+|Branch Strategy
+|Stable, beta, and experimental channels
+|Medium
+
+|Mirroring
+|Mirror to multiple Git forges (GitHub, GitLab, Codeberg)
+|Medium
+|===
+
+==== 3.2 IPFS Integration
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|CID Generation
+|Generate IPFS CIDs for all script versions
+|High
+
+|Pinning Service
+|Pin validated scripts to IPFS nodes
+|High
+
+|IPNS Publishing
+|Mutable links to latest versions via IPNS
+|High
+
+|Gateway Integration
+|Serve scripts via public IPFS gateways
+|Medium
+
+|Cluster Support
+|IPFS Cluster for redundancy
+|Medium
+|===
+
+==== 3.3 Source Integration
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Greasy Fork Sync
+|Periodic synchronization with Greasy Fork
+|High
+
+|OpenUserJS Sync
+|Periodic synchronization with OpenUserJS
+|High
+
+|GitHub Discovery
+|Discover scripts in GitHub repositories
+|Medium
+
+|awesome-userscripts Sync
+|Bidirectional sync with awesome-userscripts
+|High
+
+|UserStyles.world Sync
+|Synchronization with UserStyles.world
+|Medium
+|===
+
+==== 3.4 API Layer
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|REST API
+|RESTful API via Servant for script CRUD operations
+|Critical
+
+|GraphQL API
+|GraphQL schema for flexible querying
+|High
+
+|Webhook Support
+|Webhooks for script updates and analysis events
+|Medium
+
+|Rate Limiting
+|API rate limiting and abuse prevention
+|High
+
+|API Keys
+|API key management for third-party integrations
+|Medium
+|===
+
+=== Success Criteria
+
+* [ ] Registry contains 1000+ validated scripts
+* [ ] All scripts available via IPFS within 24 hours
+* [ ] Real-time sync with major sources (< 1 hour lag)
+* [ ] API response time < 100ms for common queries
+* [ ] 99.9% availability
+
+== M4: Community Platform
+
+=== Overview
+
+Web-based community platform for browsing, rating, reviewing, and reporting on scripts.
+
+=== Objectives
+
+* Provide user-friendly interface for script discovery
+* Enable community feedback and ratings
+* Support behavioral reporting and verification
+* Build trust network among maintainers
+
+=== Deliverables
+
+==== 4.1 Web Frontend
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Technology Selection
+|ReScript + React for type-safe frontend
+|High
+
+|Script Browser
+|Search, filter, and browse script catalog
+|Critical
+
+|Script Detail Pages
+|Comprehensive script information display
+|Critical
+
+|Analysis Visualization
+|Interactive visualization of analysis results
+|High
+
+|Responsive Design
+|Mobile-first responsive design
+|High
+
+|Accessibility
+|WCAG 2.1 AA compliance
+|Critical
+
+|Dark Mode
+|System-aware dark/light theme
+|Medium
+|===
+
+==== 4.2 User Accounts
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Authentication
+|OAuth with GitHub, GitLab, email fallback
+|Critical
+
+|Profile Management
+|User profiles with customization
+|High
+
+|Script Claiming
+|Verify and claim script authorship
+|High
+
+|Maintainer Verification
+|Identity verification for trusted maintainers
+|Medium
+
+|Privacy Controls
+|User privacy settings and data export
+|High
+|===
+
+==== 4.3 Rating & Reviews
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Star Ratings
+|5-star rating system with averages
+|High
+
+|Written Reviews
+|Text reviews with markdown support
+|High
+
+|Upvoting/Helpfulness
+|Vote on review helpfulness
+|Medium
+
+|Review Moderation
+|Community and admin moderation
+|High
+
+|Rating Analytics
+|Rating trends and statistics
+|Medium
+|===
+
+==== 4.4 Behavioral Reports
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Report Submission
+|User-submitted behavioral reports
+|High
+
+|Report Categories
+|Categorized reports (malware, broken, slow, etc.)
+|High
+
+|Report Verification
+|Community verification of reports
+|Medium
+
+|Automatic Detection
+|Integrate browser extension anomaly reports
+|Medium
+
+|Response System
+|Maintainer response to reports
+|Medium
+|===
+
+==== 4.5 Discussion Forums
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Script Discussions
+|Per-script discussion threads
+|Medium
+
+|Bug Reports
+|Structured bug report submissions
+|High
+
+|Feature Requests
+|Feature request system
+|Medium
+
+|Q&A Format
+|Question/answer format with accepted answers
+|Medium
+
+|Notifications
+|User notification preferences
+|Medium
+|===
+
+=== Success Criteria
+
+* [ ] 1000+ registered users within first year
+* [ ] Average response time < 200ms
+* [ ] WCAG 2.1 AA certification
+* [ ] 80%+ user satisfaction rating
+* [ ] Active community participation
+
+== M5: Browser Integration
+
+=== Overview
+
+Browser extension that integrates with script managers to provide real-time trust indicators and behavioral monitoring.
+
+=== Objectives
+
+* Seamless integration with major script managers
+* Real-time trust verification before installation
+* Behavioral monitoring and anomaly reporting
+* Enhanced user protection
+
+=== Deliverables
+
+==== 5.1 Checky Monkey Extension
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Extension Architecture
+|MV3-compatible extension design
+|Critical
+
+|Cross-Browser Support
+|Chrome, Firefox, Safari, Edge support
+|Critical
+
+|Settings Management
+|User preferences and configuration
+|High
+
+|Secure Communication
+|Encrypted communication with API
+|Critical
+
+|Offline Mode
+|Graceful degradation when offline
+|Medium
+|===
+
+==== 5.2 Script Manager Integration
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Tampermonkey Integration
+|Deep integration with Tampermonkey
+|Critical
+
+|Violentmonkey Integration
+|Deep integration with Violentmonkey
+|Critical
+
+|Greasemonkey Integration
+|Integration with Greasemonkey
+|High
+
+|AdGuard Integration
+|Integration for filter lists
+|Medium
+
+|Stylus Integration
+|Integration for userstyles
+|Medium
+|===
+
+==== 5.3 Trust Indicators
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Installation Interception
+|Intercept installation prompts
+|Critical
+
+|Trust Badge Display
+|Color-coded trust indicators
+|Critical
+
+|Detailed Analysis Popup
+|On-demand analysis details
+|High
+
+|Risk Warnings
+|Clear warnings for risky scripts
+|Critical
+
+|Comparison View
+|Compare versions for updates
+|Medium
+|===
+
+==== 5.4 Behavioral Monitoring
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Network Monitoring
+|Monitor script network activity
+|High
+
+|Performance Monitoring
+|Track resource usage
+|Medium
+
+|Anomaly Detection
+|Detect behavioral changes
+|High
+
+|User Reporting
+|Easy anomaly reporting
+|High
+
+|Privacy Mode
+|Local-only monitoring option
+|High
+|===
+
+=== Success Criteria
+
+* [ ] 10,000+ extension users
+* [ ] < 1% false positive rate on warnings
+* [ ] Minimal performance overhead (< 5ms per page)
+* [ ] 90%+ user trust in recommendations
+* [ ] Zero security vulnerabilities
+
+== M6: Developer Experience
+
+=== Overview
+
+Tools and infrastructure to help developers create high-quality scripts from the start.
+
+=== Objectives
+
+* Reduce barrier to entry for new developers
+* Encourage best practices by default
+* Provide comprehensive testing infrastructure
+* Integrate with common development workflows
+
+=== Deliverables
+
+==== 6.1 ADE (Application Development Environment)
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|VS Code Extension
+|VS Code integration for script development
+|High
+
+|Language Server
+|LSP for userscript metadata and APIs
+|High
+
+|Syntax Highlighting
+|Enhanced highlighting for userscript headers
+|High
+
+|Autocomplete
+|Metadata and GM API autocompletion
+|High
+
+|Inline Validation
+|Real-time validation in editor
+|High
+
+|Debugging Support
+|Integrated debugging helpers
+|Medium
+|===
+
+==== 6.2 Template Library
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Starter Templates
+|Basic templates for common use cases
+|Critical
+
+|Security-First Templates
+|Templates with security best practices
+|Critical
+
+|Accessibility Templates
+|Templates with accessibility patterns
+|High
+
+|Framework Templates
+|Templates for popular frameworks
+|Medium
+
+|Template Generator
+|Interactive template customization
+|High
+
+|Scaffoldia Integration
+|Integration with Scaffoldia project
+|High
+|===
+
+[source,javascript]
+----
+// Example: Security-First Userscript Template
+// ==UserScript==
+// @name         {{name}}
+// @namespace    {{namespace}}
+// @version      0.1.0
+// @description  {{description}}
+// @author       {{author}}
+// @match        {{match}}
+// @grant        none
+// @run-at       document-idle
+// @noframes
+// ==/UserScript==
+
+/* jshint esversion: 11 */
+/* globals GM */
+
+(function() {
+    'use strict';
+
+    // Configuration
+    const CONFIG = Object.freeze({
+        debug: false,
+        version: '0.1.0'
+    });
+
+    // Safe DOM manipulation
+    function safeQuerySelector(selector) {
+        try {
+            return document.querySelector(selector);
+        } catch (e) {
+            console.error('[{{name}}] Invalid selector:', selector);
+            return null;
+        }
+    }
+
+    // Main entry point
+    function main() {
+        // Your code here
+    }
+
+    // Wait for document ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', main);
+    } else {
+        main();
+    }
+})();
+----
+
+==== 6.3 Validation Hooks
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Pre-Commit Hooks
+|Git hooks for local validation
+|High
+
+|CI Integration
+|GitHub Actions, GitLab CI templates
+|High
+
+|Pre-Publish Checks
+|Mandatory checks before publishing
+|Critical
+
+|Custom Rules
+|User-defined validation rules
+|Medium
+
+|Bypass Documentation
+|Clear process for legitimate bypasses
+|Medium
+|===
+
+==== 6.4 Documentation Generator
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Auto-Documentation
+|Generate docs from script metadata and code
+|High
+
+|Changelog Generation
+|Automatic changelog from commits
+|High
+
+|API Documentation
+|Document GM API usage in script
+|Medium
+
+|Usage Examples
+|Generate usage examples
+|Medium
+
+|Multi-Language
+|i18n support for generated docs
+|Low
+|===
+
+==== 6.5 Testing Framework
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Unit Testing
+|Unit test infrastructure for scripts
+|High
+
+|Integration Testing
+|Test scripts against target sites
+|High
+
+|Visual Regression
+|Screenshot comparison testing
+|Medium
+
+|Performance Testing
+|Automated performance benchmarks
+|Medium
+
+|Cross-Browser Testing
+|Automated testing across browsers
+|Medium
+
+|CI Test Running
+|Integration with CI systems
+|High
+|===
+
+=== Success Criteria
+
+* [ ] 100+ templates available
+* [ ] ADE used by 50%+ of active contributors
+* [ ] Average script quality score improvement of 20%
+* [ ] < 10 minute setup for new developers
+* [ ] Comprehensive documentation coverage
+
+== M7: AI Enhancement
+
+=== Overview
+
+Integration of AI/ML capabilities for documentation generation, script improvement, and eventually full ReScript transpilation.
+
+=== Objectives
+
+* Automate documentation generation
+* Provide intelligent improvement suggestions
+* Enable safe, verified ReScript rewrites
+* Support accessibility remediation
+
+=== Deliverables
+
+==== 7.1 SLM Integration
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Model Selection
+|Evaluate and select appropriate SLM
+|Critical
+
+|Local Inference
+|Support local model inference
+|High
+
+|API Integration
+|Optional cloud API for larger models
+|Medium
+
+|Privacy Controls
+|Strict data handling policies
+|Critical
+
+|Fine-Tuning Pipeline
+|Infrastructure for model improvement
+|Medium
+|===
+
+==== 7.2 Documentation Generation
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Code Summarization
+|Generate natural language descriptions
+|High
+
+|Usage Documentation
+|Generate user-facing documentation
+|High
+
+|API Reference
+|Document script APIs and functions
+|Medium
+
+|Changelog Drafting
+|Draft changelogs from diffs
+|Medium
+
+|Multi-Language
+|Generate docs in multiple languages
+|Low
+|===
+
+==== 7.3 Improvement Suggestions
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Security Fixes
+|Suggest fixes for security issues
+|Critical
+
+|Performance Optimization
+|Suggest performance improvements
+|High
+
+|Accessibility Remediation
+|Suggest accessibility fixes
+|High
+
+|Code Modernization
+|Suggest modern API replacements
+|Medium
+
+|Best Practices
+|General code quality suggestions
+|Medium
+|===
+
+==== 7.4 ReScript Transpilation
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|JavaScript to ReScript
+|Automated transpilation assistance
+|High
+
+|Type Inference
+|Infer types for ReScript conversion
+|High
+
+|Verification Testing
+|Ensure behavioral equivalence
+|Critical
+
+|Incremental Migration
+|Support gradual migration path
+|Medium
+
+|Community Review
+|Human review for transpiled code
+|Critical
+|===
+
+=== Success Criteria
+
+* [ ] 90%+ documentation generation accuracy
+* [ ] 80%+ acceptance rate for suggestions
+* [ ] Zero security regressions from AI changes
+* [ ] < 30 second generation time
+* [ ] Community-verified transpilation quality
+
+== M8: Ecosystem Integration
+
+=== Overview
+
+Full integration with the broader userscript ecosystem and establishment as the foundation for Scaffoldia.
+
+=== Objectives
+
+* Become the authoritative validation source
+* Deep integration with awesome-userscripts
+* Serve as Scaffoldia's script backend
+* Establish industry partnerships
+
+=== Deliverables
+
+==== 8.1 awesome-userscripts Integration
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Automatic Indexing
+|Index all awesome-userscripts entries
+|High
+
+|Badge System
+|Validation badges for listings
+|High
+
+|Submission Pipeline
+|Streamlined submission from Checky Monkey
+|High
+
+|Quality Gates
+|Mandatory validation for inclusion
+|Medium
+
+|Maintainer Coordination
+|Work with awesome-userscripts maintainers
+|High
+|===
+
+==== 8.2 Scaffoldia Foundation
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|API Integration
+|Stable API for Scaffoldia consumption
+|Critical
+
+|Template Sync
+|Synchronize templates between projects
+|High
+
+|Identity Federation
+|Shared identity system
+|High
+
+|Quality Metrics
+|Provide quality metrics for Scaffoldia
+|High
+
+|Recommendation Engine
+|Power Scaffoldia's script recommendations
+|Medium
+|===
+
+==== 8.3 Industry Partnerships
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Script Manager Partnerships
+|Official partnerships with TM, VM, etc.
+|High
+
+|Browser Vendor Outreach
+|Engage with browser vendors
+|Medium
+
+|Security Community
+|Engage with security researchers
+|High
+
+|Accessibility Organizations
+|Partner with a11y organizations
+|Medium
+
+|Academic Collaboration
+|Research partnerships
+|Low
+|===
+
+==== 8.4 Governance & Sustainability
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Priority
+
+|Governance Model
+|Establish clear governance structure
+|High
+
+|Sustainability Plan
+|Long-term funding and maintenance plan
+|High
+
+|Succession Planning
+|Bus factor mitigation
+|Medium
+
+|Community Growth
+|Expand contributor base
+|High
+
+|Documentation
+|Comprehensive project documentation
+|High
+|===
+
+=== Success Criteria
+
+* [ ] Official integration with 3+ script managers
+* [ ] 50%+ of awesome-userscripts entries validated
+* [ ] Scaffoldia successfully launched on Checky Monkey backend
+* [ ] Sustainable funding model established
+* [ ] Active community of 50+ contributors
+
+== Technical Debt & Maintenance
+
+=== Ongoing Tasks
+
+These tasks are continuous and not tied to specific milestones:
+
+[cols="1,3,1", options="header"]
+|===
+|Task |Description |Frequency
+
+|Dependency Updates
+|Keep dependencies current
+|Weekly
+
+|Security Patches
+|Apply security updates promptly
+|As needed
+
+|Performance Optimization
+|Profile and optimize hot paths
+|Monthly
+
+|Documentation Updates
+|Keep documentation current
+|With each release
+
+|Community Support
+|Respond to issues and discussions
+|Daily
+
+|Malware Signature Updates
+|Update detection signatures
+|Weekly
+|===
+
+=== Technical Debt Tracking
+
+* Track technical debt in GitHub Issues with `tech-debt` label
+* Allocate ~20% of development capacity to debt reduction
+* Prioritize debt that impacts security or performance
+
+== Contributing to the Roadmap
+
+=== How to Propose Changes
+
+1. Open a GitHub Issue with the `roadmap` label
+2. Describe the proposed change and rationale
+3. Discuss with community in issue comments
+4. Submit PR to update ROADMAP.adoc
+5. Core team reviews and merges
+
+=== Prioritization Criteria
+
+Features are prioritized based on:
+
+1. **Security Impact**: Does it improve user security?
+2. **User Value**: How many users benefit?
+3. **Technical Foundation**: Is it required for other features?
+4. **Community Demand**: Is there strong community interest?
+5. **Feasibility**: Can it be implemented with current resources?
+
+== Changelog
+
+=== 2025-01 (Initial)
+
+* Initial roadmap creation
+* Defined all major milestones (M0-M8)
+* Detailed Phase 1 (Foundation) specifications
+
+'''
+
+[.text-center]
+**This roadmap is a living document. Community input shapes our direction.**
+
+[.text-center]
+_"The best time to plant a tree was 20 years ago. The second best time is now."_
+
+== See Also
+
+* link:README.adoc[README.adoc] - Project overview
+* link:CONTRIBUTING.md[CONTRIBUTING.md] - How to contribute
+* link:docs/ARCHITECTURE.adoc[ARCHITECTURE.adoc] - Technical architecture (coming soon)
