@@ -1,6 +1,9 @@
 = Checky Monkey
+image:https://img.shields.io/badge/license-PMPL--1.0-blue.svg[License,link="https://github.com/hyperpolymath/palimpsest-license"]
 
-image:https://img.shields.io/badge/License-MPL_2.0-blue.svg[MPL-2.0,link="https://opensource.org/licenses/MPL-2.0"]
+
+
+
 image:https://img.shields.io/badge/Philosophy-Palimpsest-purple.svg[Palimpsest,link="https://github.com/hyperpolymath/palimpsest-licence"]
 
 
@@ -559,7 +562,7 @@ Checky Monkey is in early development. Current features are foundational.
 
 * [x] Project scaffolding and infrastructure
 * [x] CI/CD pipeline with quality gates
-* [x] Dual licensing (MIT OR AGPL-3.0-or-later)
+* [x] Dual licensing (PMPL-1.0 OR PMPL-1.0-or-later)
 * [x] Basic documentation structure
 * [x] Community health files (CODE_OF_CONDUCT, CONTRIBUTING, SECURITY)
 
@@ -963,8 +966,8 @@ Please see link:SECURITY.md[SECURITY.md] for our security policy and how to repo
 
 This project is dual-licensed:
 
-* **MIT License** - For maximum flexibility
-* **AGPL-3.0-or-later** - For copyleft protection (especially for SaaS deployments)
+* **Palimpsest-MPL License v1.0 (PMPL-1.0)** - For maximum flexibility
+* **PMPL-1.0-or-later** - For copyleft protection (especially for SaaS deployments)
 
 You may choose either license. See link:LICENSE.txt[LICENSE.txt] for full details.
 
