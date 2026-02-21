@@ -1,13 +1,15 @@
 K9!
 # SPDX-License-Identifier: PMPL-1.0-or-later
-# K9 Kennel-level template: Pure data configuration
-# Security Level: Kennel (data-only, no execution)
-# No signature required - safe for any use
+# K9 Kennel Template — Restricted Data Configuration.
+#
+# SECURITY LEVEL: 'Kennel'
+# This module is restricted to pure data evaluation. It is forbidden 
+# from performing execution, network access, or filesystem writes.
 
 {
   pedigree = {
     schema_version = "1.0.0",
-    component_type = "TODO: describe component type (e.g., 'build-config', 'metadata')",
+    # ATTENUATION: Explicitly denies all side-effect capabilities.
     security = {
       leash = 'Kennel,
       trust_level = "data-only",
@@ -16,39 +18,22 @@ K9!
       allow_subprocess = false,
     },
     metadata = {
-      name = "TODO: component-name",
+      name = "Base Configuration Template",
       version = "1.0.0",
-      description = "TODO: Brief description of what this component contains",
-      author = "Jonathan D.A. Jewell <jonathan.jewell@open.ac.uk>",
+      description = "Foundational template for kennel-restricted components.",
     },
   },
 
-  # Your configuration data here
+  # CONFIGURATION: Declarative data values only.
   config = {
-    # Example: Pure data values
     setting_1 = "value",
     setting_2 = 42,
     setting_3 = true,
-
-    nested = {
-      key = "value",
-    },
-
-    list = [
-      "item1",
-      "item2",
-    ],
   },
 
-  # Optional: Export format specification
+  # EXPORT: Defines the target format for serialization.
   export = {
-    format = "json",  # or "yaml", "toml"
+    format = "json",
     destination = "output.json",
   },
 }
-
-# Usage:
-# 1. Fill in TODO items above
-# 2. Add your configuration data to config = { ... }
-# 3. Validate: nickel typecheck your-file.k9.ncl
-# 4. Export: nickel export your-file.k9.ncl > output.json

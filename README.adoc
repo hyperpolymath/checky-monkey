@@ -1122,3 +1122,8 @@ Community feedback adjusts the final score by up to ±10%
 
 [.text-center]
 _"Trust, but verify. Then verify again."_
+
+
+== Architecture
+
+See link:TOPOLOGY.md[TOPOLOGY.md] for a visual architecture map and completion dashboard.

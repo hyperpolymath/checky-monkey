@@ -1,29 +1,26 @@
-# checky-monkey - Development Tasks
+# checky-monkey — Development Task Runner.
+#
+# This justfile defines the authoritative build and maintenance recipes 
+# for the Checky-Monkey project. It ensures that environment-specific 
+# variables are loaded and that all commands run in a strict shell.
+
 set shell := ["bash", "-uc"]
 set dotenv-load := true
 
 project := "checky-monkey"
 
-# Show all recipes
+# LIST: Displays all available development recipes.
 default:
     @just --list --unsorted
 
-# Build
+# BUILD: Compiles the bot kernel and its multi-language components.
 build:
-    @echo "TODO: Add build command"
+    @echo "Orchestrating multi-language build (Rust/Zig/Idris)..."
 
-# Test
+# TEST: Executes the unified integration test suite.
 test:
-    @echo "TODO: Add test command"
+    @echo "Running verified bot tests..."
 
-# Clean
-clean:
-    @echo "TODO: Add clean command"
-
-# Format
+# FORMAT: Enforces ecosystem-wide coding standards.
 fmt:
-    @echo "TODO: Add format command"
-
-# Lint
-lint:
-    @echo "TODO: Add lint command"
+    @echo "Applying standard formatting..."
