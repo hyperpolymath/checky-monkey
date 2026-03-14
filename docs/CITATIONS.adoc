@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 = checky-monkey - Citation Guide
 :toc:
 
@@ -6,29 +7,29 @@
 [source,bibtex]
 ----
 @software{checky-monkey_2025,
-  author = {Polymath, Hyper},
+  author = {Jewell, Jonathan D.A.},
   title = {checky-monkey},
   year = {2025},
   url = {https://github.com/hyperpolymath/checky-monkey},
-  license = {AGPL-3.0-or-later}
+  license = {PMPL-1.0-or-later}
 }
 ----
 
 == Harvard Style
 
-Polymath, H. (2025) _checky-monkey_ [Computer software]. Available at: https://github.com/hyperpolymath/checky-monkey
+Jewell, J.D.A. (2025) _checky-monkey_ [Computer software]. Available at: https://github.com/hyperpolymath/checky-monkey
 
 == OSCOLA
 
-Hyper Polymath, 'checky-monkey' (2025) <https://github.com/hyperpolymath/checky-monkey>
+Jonathan D.A. Jewell, 'checky-monkey' (2025) <https://github.com/hyperpolymath/checky-monkey>
 
 == MLA
 
-Polymath, Hyper. "checky-monkey." 2025, github.com/hyperpolymath/checky-monkey.
+Jewell, Jonathan D.A. "checky-monkey." 2025, github.com/hyperpolymath/checky-monkey.
 
 == APA 7
 
-Polymath, H. (2025). _checky-monkey_ [Computer software]. GitHub. https://github.com/hyperpolymath/checky-monkey
+Jewell, J.D.A. (2025). _checky-monkey_ [Computer software]. GitHub. https://github.com/hyperpolymath/checky-monkey
 
 == See Also
 

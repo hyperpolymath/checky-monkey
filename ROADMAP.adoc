@@ -129,7 +129,7 @@ Initial project setup, documentation, and community infrastructure.
 |Done
 
 |Licensing
-|Dual MIT/AGPL-3.0-or-later licensing with Palimpsest overlay
+|Dual MIT/PMPL-1.0-or-later licensing with Palimpsest overlay
 |Done
 
 |Community Files
