@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Clade declaration — part of the gv-clade-index registry
+# See: https://github.com/hyperpolymath/gv-clade-index
+
+[identity]
+uuid = "a1df4542-91f8-5ae5-a75d-b6a545898d91"
+primary-forge = "github"
+primary-owner = "hyperpolymath"
+canonical-name = "checky-monkey"
+prefixed-name = "gm-checky-monkey"
+
+[clade]
+primary = "gm"
+secondary = ["sc", "rm"]
+assigned = "2026-03-16"
+rationale = ""
+
+[forges]
+github = "hyperpolymath/checky-monkey"
+gitlab = "hyperpolymath/checky-monkey"
+bitbucket = "hyperpolymath/checky-monkey"
+
+[lineage]
+type = "standalone"
+parent = "Userscript/userstyle validation platform (Haskell)"
+born = "2026-03-16"
