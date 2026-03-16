@@ -1,3 +1,4 @@
+-- SPDX-License-Identifier: PMPL-1.0-or-later
 ||| CHECKY-MONKEY — ABI Type Definitions
 |||
 ||| This module defines the Application Binary Interface for the 
