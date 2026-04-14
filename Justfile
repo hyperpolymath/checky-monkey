@@ -7,6 +7,8 @@
 set shell := ["bash", "-uc"]
 set dotenv-load := true
 
+import? "contractile.just"
+
 project := "checky-monkey"
 
 # LIST: Displays all available development recipes.
