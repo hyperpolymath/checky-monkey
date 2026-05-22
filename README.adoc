@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-License-Identifier: MPL-2.0
 // SPDX-FileCopyrightText: 2025-2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 
 = Checky Monkey
@@ -567,7 +567,7 @@ Checky Monkey is in early development. Current features are foundational.
 
 * [x] Project scaffolding and infrastructure
 * [x] CI/CD pipeline with quality gates
-* [x] Dual licensing (PMPL-1.0 OR PMPL-1.0-or-later)
+* [x] Dual licensing (PMPL-1.0 OR MPL-2.0)
 * [x] Basic documentation structure
 * [x] Community health files (CODE_OF_CONDUCT, CONTRIBUTING, SECURITY)
 
@@ -972,7 +972,7 @@ Please see link:SECURITY.md[SECURITY.md] for our security policy and how to repo
 This project is dual-licensed:
 
 * **Palimpsest-MPL License v1.0 (PMPL-1.0)** - For maximum flexibility
-* **PMPL-1.0-or-later** - For copyleft protection (especially for SaaS deployments)
+* **MPL-2.0** - For copyleft protection (especially for SaaS deployments)
 
 You may choose either license. See link:LICENSE.txt[LICENSE.txt] for full details.
 
