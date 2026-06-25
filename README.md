@@ -1,268 +1,257 @@
-[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-pink?logo=github)](https://github.com/sponsors/hyperpolymath)
+<!--
+SPDX-License-Identifier: CC-BY-SA-4.0
+SPDX-FileCopyrightText: 2025-2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 
-// SPDX-License-Identifier: CC-BY-SA-4.0
-// SPDX-FileCopyrightText: 2025-2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+[![License: PMPL-1.0](https://img.shields.io/badge/License-MPL--2.0-blue.svg)](https://github.com/hyperpolymath/palimpsest-license) <embed
+src="https://api.thegreenwebfoundation.org/greencheckimage/github.com"
+data-link="https://www.thegreenwebfoundation.org/green-web-check/?url=github.com" />
 
-= Checky Monkey
-image:https://img.shields.io/badge/OpenSSF-Best_Practices-green?logo=opensourcesecurity[OpenSSF Best Practices,link="https://www.bestpractices.dev/en/projects/new?repo_url=https://github.com/hyperpolymath/checky-monkey"]
-image:https://img.shields.io/badge/License-MPL--2.0-blue.svg[License: PMPL-1.0,link="https://github.com/hyperpolymath/palimpsest-license"]
-image:https://api.thegreenwebfoundation.org/greencheckimage/github.com[Green Web,link="https://www.thegreenwebfoundation.org/green-web-check/?url=github.com"]
+[![Palimpsest](https://img.shields.io/badge/Philosophy-Palimpsest-indigo.svg)](https://github.com/hyperpolymath/palimpsest-license)
 
+![Checky Monkey Logo](docs/images/checky-monkey-logo.svg)
 
+<div class="text-center" wrapper="1">
 
-
-image:https://img.shields.io/badge/Philosophy-Palimpsest-indigo.svg[Palimpsest,link="https://github.com/hyperpolymath/palimpsest-license"]
-
-
-:author: Hyper Polymath
-:email: hyperpolymath@proton.me
-:revnumber: 0.1.0
-:revdate: 2025
-:revremark: Initial comprehensive documentation
-:toc: macro
-:toc-title: Table of Contents
-:toclevels: 4
-:sectnums:
-:sectnumlevels: 4
-:icons: font
-:source-highlighter: rouge
-:experimental:
-:imagesdir: docs/images
-:doctype: book
-:keywords: userscripts, validation, security, registry, greasemonkey, tampermonkey, violentmonkey, stylus, haskell, ipfs, decentralized
-:description: A git forge-based registry and comprehensive validation platform for userscripts, userstyles, and browser extensions
-
-++++
-<p align="center">
-  <img src="docs/images/checky-monkey-logo.svg" alt="Checky Monkey Logo" width="200"/>
-</p>
-++++
-
-[.text-center]
 **The Trust Layer for the Userscript Ecosystem**
 
-[.text-center]
-_Validate. Verify. Visualize. Vitalize._
+</div>
 
-[.lead]
-Checky Monkey is a git forge-based registry and comprehensive validation/verification platform for userscripts, userstyles, and browser customization scripts. Think VirusTotal meets npm—but purpose-built for the userscript community, with deep security analysis, quality metrics, community intelligence, and eventually AI-assisted script improvement.
+<div class="text-center" wrapper="1">
 
-[NOTE]
-====
-This project is in early development. See the link:ROADMAP.adoc[Roadmap] for planned features and milestones.
-====
+*Validate. Verify. Visualize. Vitalize.*
 
-'''
+</div>
 
-toc::[]
+<div class="lead" wrapper="1">
 
-'''
+Checky Monkey is a git forge-based registry and comprehensive
+validation/verification platform for userscripts, userstyles, and
+browser customization scripts. Think VirusTotal meets npm—but
+purpose-built for the userscript community, with deep security analysis,
+quality metrics, community intelligence, and eventually AI-assisted
+script improvement.
 
-== Executive Summary
+</div>
 
-=== The Problem
+> [!NOTE]
+> This project is in early development. See the [Roadmap](ROADMAP.adoc)
+> for planned features and milestones.
+
+------------------------------------------------------------------------
+
+<div id="toc">
+
+</div>
+
+------------------------------------------------------------------------
+
+# Executive Summary
+
+## The Problem
 
 The userscript ecosystem is fragmented and lacks a unified trust layer:
 
-* **Security Uncertainty**: Users install scripts without knowing if they contain malicious code, XSS vulnerabilities, or privacy-violating trackers
-* **Quality Opacity**: No standardized way to assess script reliability, performance impact, or compatibility
-* **Fragmented Ecosystem**: Scripts scattered across Greasy Fork, OpenUserJS, GitHub Gists, random repositories, and personal sites
-* **No Provenance**: Difficult to verify authorship, track modifications, or ensure script integrity
-* **Accessibility Blind Spots**: Many scripts break accessibility features or don't consider users with disabilities
-* **Documentation Deficits**: Most scripts lack proper documentation, changelogs, or usage guides
+- **Security Uncertainty**: Users install scripts without knowing if
+  they contain malicious code, XSS vulnerabilities, or privacy-violating
+  trackers
 
-=== The Solution
+- **Quality Opacity**: No standardized way to assess script reliability,
+  performance impact, or compatibility
+
+- **Fragmented Ecosystem**: Scripts scattered across Greasy Fork,
+  OpenUserJS, GitHub Gists, random repositories, and personal sites
+
+- **No Provenance**: Difficult to verify authorship, track
+  modifications, or ensure script integrity
+
+- **Accessibility Blind Spots**: Many scripts break accessibility
+  features or don’t consider users with disabilities
+
+- **Documentation Deficits**: Most scripts lack proper documentation,
+  changelogs, or usage guides
+
+## The Solution
 
 Checky Monkey provides:
 
-[cols="1,3", options="header"]
-|===
-|Capability |Description
+| Capability | Description |
+|----|----|
+| **Unified Registry** | Git forge-based, content-addressed repository of userscripts with full version history and provenance tracking |
+| **Deep Analysis** | Multi-dimensional validation covering security, performance, accessibility, usability, and compatibility |
+| **Community Intelligence** | Crowdsourced ratings, reviews, and behavioral reports—similar to VirusTotal’s community features |
+| **IPFS Distribution** | Decentralized, censorship-resistant script distribution with content-addressed integrity |
+| **Script Enhancement** | AI-assisted script improvement, documentation generation, and eventually full ReScript rewrites |
+| **Developer Tools** | ADE (Application Development Environment), templates, and best-practice scaffolding |
 
-|**Unified Registry**
-|Git forge-based, content-addressed repository of userscripts with full version history and provenance tracking
+## Vision Statement
 
-|**Deep Analysis**
-|Multi-dimensional validation covering security, performance, accessibility, usability, and compatibility
+> To elevate the userscript ecosystem from the wild west of browser
+> customization to a trusted, transparent, and thriving community where
+> users can confidently enhance their web experience, and developers can
+> build on solid foundations with maximum visibility into their code’s
+> impact.
 
-|**Community Intelligence**
-|Crowdsourced ratings, reviews, and behavioral reports—similar to VirusTotal's community features
+# Project Overview
 
-|**IPFS Distribution**
-|Decentralized, censorship-resistant script distribution with content-addressed integrity
-
-|**Script Enhancement**
-|AI-assisted script improvement, documentation generation, and eventually full ReScript rewrites
-
-|**Developer Tools**
-|ADE (Application Development Environment), templates, and best-practice scaffolding
-|===
-
-=== Vision Statement
-
-[quote]
-____
-To elevate the userscript ecosystem from the wild west of browser customization to a trusted, transparent, and thriving community where users can confidently enhance their web experience, and developers can build on solid foundations with maximum visibility into their code's impact.
-____
-
-== Project Overview
-
-=== What is Checky Monkey?
+## What is Checky Monkey?
 
 Checky Monkey is a comprehensive platform consisting of:
 
-==== 1. The Registry (Forge)
+### 1. The Registry (Forge)
 
 A git-native registry for userscripts that:
 
-* Stores scripts with full version control history
-* Provides content-addressed storage (CUBS database)
-* Mirrors to IPFS for decentralized distribution
-* Integrates with existing sources (Greasy Fork, OpenUserJS, GitHub)
-* Maintains cryptographic provenance chains
+- Stores scripts with full version control history
 
-==== 2. The Analysis Engine
+- Provides content-addressed storage (CUBS database)
+
+- Mirrors to IPFS for decentralized distribution
+
+- Integrates with existing sources (Greasy Fork, OpenUserJS, GitHub)
+
+- Maintains cryptographic provenance chains
+
+### 2. The Analysis Engine
 
 A multi-faceted validation system that evaluates scripts across:
 
-[horizontal]
-Security:: Vulnerability scanning, malware detection, permission analysis, CSP compliance
-Privacy:: Tracker detection, data exfiltration analysis, third-party communication auditing
-Performance:: Resource usage profiling, DOM mutation analysis, network request auditing
-Accessibility:: WCAG compliance checking, screen reader compatibility, keyboard navigation
-Usability:: UI/UX heuristic evaluation, error handling, user feedback mechanisms
-Compatibility:: Browser compatibility matrix, script manager interoperability, conflict detection
-Functionality:: Behavior verification, regression testing, feature completeness
-Dependability:: Reliability metrics, error rates, recovery capabilities
+Security  
+Vulnerability scanning, malware detection, permission analysis, CSP
+compliance
 
-==== 3. The Community Platform
+Privacy  
+Tracker detection, data exfiltration analysis, third-party communication
+auditing
+
+Performance  
+Resource usage profiling, DOM mutation analysis, network request
+auditing
+
+Accessibility  
+WCAG compliance checking, screen reader compatibility, keyboard
+navigation
+
+Usability  
+UI/UX heuristic evaluation, error handling, user feedback mechanisms
+
+Compatibility  
+Browser compatibility matrix, script manager interoperability, conflict
+detection
+
+Functionality  
+Behavior verification, regression testing, feature completeness
+
+Dependability  
+Reliability metrics, error rates, recovery capabilities
+
+### 3. The Community Platform
 
 A collaborative ecosystem featuring:
 
-* **Trust Scoring**: Aggregate reputation based on analysis results and community feedback
-* **Behavioral Reports**: Real-world usage reports from the community
-* **Discussion Forums**: Script-specific discussions, bug reports, feature requests
-* **Maintainer Verification**: Identity verification for script authors
-* **Endorsement Network**: Web of trust between verified maintainers
+- **Trust Scoring**: Aggregate reputation based on analysis results and
+  community feedback
 
-==== 4. The Browser Integration
+- **Behavioral Reports**: Real-world usage reports from the community
+
+- **Discussion Forums**: Script-specific discussions, bug reports,
+  feature requests
+
+- **Maintainer Verification**: Identity verification for script authors
+
+- **Endorsement Network**: Web of trust between verified maintainers
+
+### 4. The Browser Integration
 
 A meta-script/extension that:
 
-* Integrates with Tampermonkey, Violentmonkey, Greasemonkey, and AdGuard
-* Provides real-time trust indicators before script installation
-* Enables automatic updates from the verified registry
-* Reports behavioral anomalies back to the community
+- Integrates with Tampermonkey, Violentmonkey, Greasemonkey, and AdGuard
 
-==== 5. The Developer Toolkit
+- Provides real-time trust indicators before script installation
+
+- Enables automatic updates from the verified registry
+
+- Reports behavioral anomalies back to the community
+
+### 5. The Developer Toolkit
 
 Tools for script developers including:
 
-* **ADE (Application Development Environment)**: Purpose-built IDE integration
-* **Template Library**: Best-practice templates with security by default
-* **Linting & Validation**: Pre-publish quality gates
-* **Documentation Generator**: AI-assisted documentation creation
-* **Testing Framework**: Automated testing infrastructure
+- **ADE (Application Development Environment)**: Purpose-built IDE
+  integration
 
-=== Supported Script Types
+- **Template Library**: Best-practice templates with security by default
+
+- **Linting & Validation**: Pre-publish quality gates
+
+- **Documentation Generator**: AI-assisted documentation creation
+
+- **Testing Framework**: Automated testing infrastructure
+
+## Supported Script Types
 
 Checky Monkey supports validation and registry for:
 
-[cols="1,2,2", options="header"]
-|===
-|Type |Sources |Managers
+| Type | Sources | Managers |
+|----|----|----|
+| **Userscripts** | Greasy Fork, OpenUserJS, GitHub, GitLab, Codeberg, standalone | Tampermonkey, Violentmonkey, Greasemonkey, Userscripts (Safari), FireMonkey |
+| **Userstyles** | UserStyles.world, UserStyles.org (archived), GitHub | Stylus, Stylish, xStyle |
+| **User CSS** | Custom CSS files, GitHub repositories | Browser DevTools, Stylus, custom injectors |
+| **Content Scripts** | Browser extension components, MV3 content scripts | Browser extension APIs |
+| **Bookmarklets** | Various sources, custom | Browser bookmarks, bookmarklet managers |
 
-|**Userscripts**
-|Greasy Fork, OpenUserJS, GitHub, GitLab, Codeberg, standalone
-|Tampermonkey, Violentmonkey, Greasemonkey, Userscripts (Safari), FireMonkey
-
-|**Userstyles**
-|UserStyles.world, UserStyles.org (archived), GitHub
-|Stylus, Stylish, xStyle
-
-|**User CSS**
-|Custom CSS files, GitHub repositories
-|Browser DevTools, Stylus, custom injectors
-
-|**Content Scripts**
-|Browser extension components, MV3 content scripts
-|Browser extension APIs
-
-|**Bookmarklets**
-|Various sources, custom
-|Browser bookmarks, bookmarklet managers
-|===
-
-=== Technical Philosophy
+## Technical Philosophy
 
 Checky Monkey is built on these technical principles:
 
-[cols="1,3", options="header"]
-|===
-|Principle |Implementation
+| Principle | Implementation |
+|----|----|
+| **Functional First** | Core logic in Haskell for correctness, type safety, and formal verification potential |
+| **Content Addressed** | CUBS database with content-addressable storage; every version permanently referenceable |
+| **Decentralized by Design** | IPFS integration for censorship-resistant distribution; no single point of failure |
+| **Containerized & Reproducible** | OCI containers, Nix/Guix builds, reproducible environments |
+| **Open & Interoperable** | Standard APIs, integration with existing ecosystems, no vendor lock-in |
+| **Privacy Preserving** | Minimal data collection, anonymous analysis options, local-first capabilities |
 
-|**Functional First**
-|Core logic in Haskell for correctness, type safety, and formal verification potential
+# Architecture
 
-|**Content Addressed**
-|CUBS database with content-addressable storage; every version permanently referenceable
+## System Overview
 
-|**Decentralized by Design**
-|IPFS integration for censorship-resistant distribution; no single point of failure
+    ┌─────────────────────────────────────────────────────────────────────────────┐
+    │                              CHECKY MONKEY                                   │
+    ├─────────────────────────────────────────────────────────────────────────────┤
+    │                                                                              │
+    │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐ │
+    │  │   Ingress   │  │   Analysis  │  │   Registry  │  │   Distribution      │ │
+    │  │   Gateway   │──│   Engine    │──│   (CUBS)    │──│   (IPFS/HTTP)       │ │
+    │  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘  └──────────┬──────────┘ │
+    │         │                │                │                     │            │
+    │         │                ▼                ▼                     │            │
+    │         │         ┌─────────────────────────────┐               │            │
+    │         │         │      CUBS Database          │               │            │
+    │         │         │  (Content-addressed store)  │               │            │
+    │         │         └─────────────────────────────┘               │            │
+    │         │                                                       │            │
+    │  ┌──────▼─────────────────────────────────────────────────────▼──────────┐  │
+    │  │                         API Layer (GraphQL + REST)                     │  │
+    │  └────────────────────────────────────────────────────────────────────────┘  │
+    │                                                                              │
+    └──────────────────────────────────┬───────────────────────────────────────────┘
+                                       │
+            ┌──────────────────────────┼──────────────────────────┐
+            ▼                          ▼                          ▼
+    ┌───────────────┐          ┌───────────────┐          ┌───────────────┐
+    │  Web Frontend │          │ Browser Ext.  │          │   CLI Tools   │
+    │  (Community)  │          │ (Validators)  │          │  (Developers) │
+    └───────────────┘          └───────────────┘          └───────────────┘
 
-|**Containerized & Reproducible**
-|OCI containers, Nix/Guix builds, reproducible environments
+## Core Components
 
-|**Open & Interoperable**
-|Standard APIs, integration with existing ecosystems, no vendor lock-in
-
-|**Privacy Preserving**
-|Minimal data collection, anonymous analysis options, local-first capabilities
-|===
-
-== Architecture
-
-=== System Overview
-
-[source]
-----
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                              CHECKY MONKEY                                   │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                              │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐ │
-│  │   Ingress   │  │   Analysis  │  │   Registry  │  │   Distribution      │ │
-│  │   Gateway   │──│   Engine    │──│   (CUBS)    │──│   (IPFS/HTTP)       │ │
-│  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘  └──────────┬──────────┘ │
-│         │                │                │                     │            │
-│         │                ▼                ▼                     │            │
-│         │         ┌─────────────────────────────┐               │            │
-│         │         │      CUBS Database          │               │            │
-│         │         │  (Content-addressed store)  │               │            │
-│         │         └─────────────────────────────┘               │            │
-│         │                                                       │            │
-│  ┌──────▼─────────────────────────────────────────────────────▼──────────┐  │
-│  │                         API Layer (GraphQL + REST)                     │  │
-│  └────────────────────────────────────────────────────────────────────────┘  │
-│                                                                              │
-└──────────────────────────────────┬───────────────────────────────────────────┘
-                                   │
-        ┌──────────────────────────┼──────────────────────────┐
-        ▼                          ▼                          ▼
-┌───────────────┐          ┌───────────────┐          ┌───────────────┐
-│  Web Frontend │          │ Browser Ext.  │          │   CLI Tools   │
-│  (Community)  │          │ (Validators)  │          │  (Developers) │
-└───────────────┘          └───────────────┘          └───────────────┘
-----
-
-=== Core Components
-
-==== Ingress Gateway
+### Ingress Gateway
 
 The ingress layer handles script acquisition from multiple sources:
 
-[source,haskell]
-----
+```haskell
 -- Conceptual type signatures for the ingress system
 data ScriptSource
   = GreasyFork URL
@@ -279,97 +268,73 @@ data IngestedScript = IngestedScript
   , fetchTime      :: UTCTime
   , contentHash    :: ContentHash
   }
-----
+```
 
 **Capabilities:**
 
-* Fetches scripts from configured sources (Greasy Fork API, OpenUserJS API, Git repositories)
-* Normalizes script metadata across different formats
-* Computes content hashes for deduplication and versioning
-* Queues scripts for analysis pipeline
-* Handles rate limiting and source-specific authentication
+- Fetches scripts from configured sources (Greasy Fork API, OpenUserJS
+  API, Git repositories)
 
-==== Analysis Engine
+- Normalizes script metadata across different formats
+
+- Computes content hashes for deduplication and versioning
+
+- Queues scripts for analysis pipeline
+
+- Handles rate limiting and source-specific authentication
+
+### Analysis Engine
 
 The heart of Checky Monkey—a comprehensive validation pipeline:
 
-[source]
-----
-                    ┌─────────────────────────────────┐
-                    │         Raw Script              │
-                    └───────────────┬─────────────────┘
-                                    │
-                    ┌───────────────▼─────────────────┐
-                    │         Parse & Extract         │
-                    │  (AST, Metadata, Dependencies)  │
-                    └───────────────┬─────────────────┘
-                                    │
-        ┌───────────────────────────┼───────────────────────────┐
-        ▼                           ▼                           ▼
-┌───────────────┐           ┌───────────────┐           ┌───────────────┐
-│   Security    │           │  Performance  │           │ Accessibility │
-│   Analyzer    │           │   Profiler    │           │   Checker     │
-└───────┬───────┘           └───────┬───────┘           └───────┬───────┘
-        │                           │                           │
-        ▼                           ▼                           ▼
-┌───────────────┐           ┌───────────────┐           ┌───────────────┐
-│   Privacy     │           │  Usability    │           │ Compatibility │
-│   Auditor     │           │   Evaluator   │           │   Matrix      │
-└───────┬───────┘           └───────┬───────┘           └───────┬───────┘
-        │                           │                           │
-        └───────────────────────────┼───────────────────────────┘
-                                    ▼
-                    ┌───────────────────────────────┐
-                    │      Composite Score &        │
-                    │      Detailed Report          │
-                    └───────────────────────────────┘
-----
+                        ┌─────────────────────────────────┐
+                        │         Raw Script              │
+                        └───────────────┬─────────────────┘
+                                        │
+                        ┌───────────────▼─────────────────┐
+                        │         Parse & Extract         │
+                        │  (AST, Metadata, Dependencies)  │
+                        └───────────────┬─────────────────┘
+                                        │
+            ┌───────────────────────────┼───────────────────────────┐
+            ▼                           ▼                           ▼
+    ┌───────────────┐           ┌───────────────┐           ┌───────────────┐
+    │   Security    │           │  Performance  │           │ Accessibility │
+    │   Analyzer    │           │   Profiler    │           │   Checker     │
+    └───────┬───────┘           └───────┬───────┘           └───────┬───────┘
+            │                           │                           │
+            ▼                           ▼                           ▼
+    ┌───────────────┐           ┌───────────────┐           ┌───────────────┐
+    │   Privacy     │           │  Usability    │           │ Compatibility │
+    │   Auditor     │           │   Evaluator   │           │   Matrix      │
+    └───────┬───────┘           └───────┬───────┘           └───────┬───────┘
+            │                           │                           │
+            └───────────────────────────┼───────────────────────────┘
+                                        ▼
+                        ┌───────────────────────────────┐
+                        │      Composite Score &        │
+                        │      Detailed Report          │
+                        └───────────────────────────────┘
 
 **Analysis Dimensions:**
 
-[cols="1,1,3", options="header"]
-|===
-|Dimension |Weight |Checks Performed
+| Dimension | Weight | Checks Performed |
+|----|----|----|
+| **Security** | Critical | Static analysis for XSS, injection, eval usage, dangerous APIs, obfuscation detection, known malware signatures, permission escalation, CSP violations |
+| **Privacy** | Critical | Third-party requests, tracking pixel detection, cookie manipulation, local storage access patterns, fingerprinting techniques, data exfiltration indicators |
+| **Performance** | High | DOM query efficiency, mutation observer usage, memory leak detection, network request patterns, animation frame usage, blocking operation detection |
+| **Accessibility** | High | ARIA attribute usage, focus management, color contrast impacts, screen reader compatibility, keyboard navigation, motion sensitivity |
+| **Usability** | Medium | Error handling, user feedback mechanisms, undo capabilities, settings persistence, documentation quality, i18n support |
+| **Compatibility** | Medium | Browser version support, script manager compatibility, @match pattern analysis, conflict detection, CSP compatibility |
+| **Functionality** | Medium | Behavior verification against declared purpose, regression detection, feature completeness assessment |
+| **Dependability** | Medium | Error recovery, graceful degradation, offline handling, update mechanism safety |
 
-|**Security**
-|Critical
-|Static analysis for XSS, injection, eval usage, dangerous APIs, obfuscation detection, known malware signatures, permission escalation, CSP violations
+### CUBS Database
 
-|**Privacy**
-|Critical
-|Third-party requests, tracking pixel detection, cookie manipulation, local storage access patterns, fingerprinting techniques, data exfiltration indicators
+**C**ontent-addressed **U**niversal **B**inary **S**tore—the persistence
+layer:
 
-|**Performance**
-|High
-|DOM query efficiency, mutation observer usage, memory leak detection, network request patterns, animation frame usage, blocking operation detection
-
-|**Accessibility**
-|High
-|ARIA attribute usage, focus management, color contrast impacts, screen reader compatibility, keyboard navigation, motion sensitivity
-
-|**Usability**
-|Medium
-|Error handling, user feedback mechanisms, undo capabilities, settings persistence, documentation quality, i18n support
-
-|**Compatibility**
-|Medium
-|Browser version support, script manager compatibility, @match pattern analysis, conflict detection, CSP compatibility
-
-|**Functionality**
-|Medium
-|Behavior verification against declared purpose, regression detection, feature completeness assessment
-
-|**Dependability**
-|Medium
-|Error recovery, graceful degradation, offline handling, update mechanism safety
-|===
-
-==== CUBS Database
-
-**C**ontent-addressed **U**niversal **B**inary **S**tore—the persistence layer:
-
-[source,haskell]
-----
+```haskell
 -- CUBS provides content-addressed storage with versioning
 data CUBSEntry = CUBSEntry
   { contentId    :: ContentHash      -- SHA-256 of content
@@ -388,74 +353,53 @@ data ProvenanceChain = ProvenanceChain
   , signatures     :: [CryptographicSignature]
   , attestations   :: [CommunityAttestation]
   }
-----
+```
 
 **Features:**
 
-* **Content Addressing**: Every script version has a unique, permanent identifier
-* **Immutable History**: Complete modification history preserved
-* **Cryptographic Integrity**: Optional signing by maintainers and validators
-* **Efficient Storage**: Deduplication across similar scripts
-* **IPFS Ready**: Native CID generation for IPFS pinning
+- **Content Addressing**: Every script version has a unique, permanent
+  identifier
 
-==== Distribution Layer
+- **Immutable History**: Complete modification history preserved
+
+- **Cryptographic Integrity**: Optional signing by maintainers and
+  validators
+
+- **Efficient Storage**: Deduplication across similar scripts
+
+- **IPFS Ready**: Native CID generation for IPFS pinning
+
+### Distribution Layer
 
 Multi-protocol distribution for maximum availability:
 
-* **HTTP/HTTPS**: Traditional CDN-backed delivery
-* **IPFS**: Decentralized, content-addressed distribution
-* **Git**: Clone-able repositories for developers
-* **API**: Programmatic access via GraphQL and REST
+- **HTTP/HTTPS**: Traditional CDN-backed delivery
 
-=== Technology Stack
+- **IPFS**: Decentralized, content-addressed distribution
 
-[cols="1,2,2", options="header"]
-|===
-|Layer |Technology |Rationale
+- **Git**: Clone-able repositories for developers
 
-|**Core Logic**
-|Haskell (GHC 9.6+)
-|Type safety, correctness guarantees, excellent for parsing and analysis
+- **API**: Programmatic access via GraphQL and REST
 
-|**Analysis Plugins**
-|Haskell + Lua (for extensibility)
-|Core analyzers in Haskell; community plugins in sandboxed Lua
+## Technology Stack
 
-|**Database**
-|Custom CUBS (on PostgreSQL + content store)
-|Content-addressed with relational metadata; proven, scalable foundation
+| Layer | Technology | Rationale |
+|----|----|----|
+| **Core Logic** | Haskell (GHC 9.6+) | Type safety, correctness guarantees, excellent for parsing and analysis |
+| **Analysis Plugins** | Haskell + Lua (for extensibility) | Core analyzers in Haskell; community plugins in sandboxed Lua |
+| **Database** | Custom CUBS (on PostgreSQL + content store) | Content-addressed with relational metadata; proven, scalable foundation |
+| **API** | Servant (Haskell) + GraphQL | Type-safe API definitions; flexible querying |
+| **Web Frontend** | Future: ReScript + React | Type-safe frontend; compiles to efficient JS |
+| **Browser Extension** | TypeScript (transitioning to ReScript) | Browser compatibility; gradual migration path |
+| **Containerization** | OCI (Docker/Podman) + Nix | Reproducible builds; deterministic deployments |
+| **IPFS Integration** | Kubo (go-ipfs) + Haskell bindings | Mature IPFS implementation; native Haskell access |
+| **CI/CD** | GitHub Actions + self-hosted runners | Community accessible; reproducible with Nix |
 
-|**API**
-|Servant (Haskell) + GraphQL
-|Type-safe API definitions; flexible querying
+## Data Model
 
-|**Web Frontend**
-|Future: ReScript + React
-|Type-safe frontend; compiles to efficient JS
+### Script Representation
 
-|**Browser Extension**
-|TypeScript (transitioning to ReScript)
-|Browser compatibility; gradual migration path
-
-|**Containerization**
-|OCI (Docker/Podman) + Nix
-|Reproducible builds; deterministic deployments
-
-|**IPFS Integration**
-|Kubo (go-ipfs) + Haskell bindings
-|Mature IPFS implementation; native Haskell access
-
-|**CI/CD**
-|GitHub Actions + self-hosted runners
-|Community accessible; reproducible with Nix
-|===
-
-=== Data Model
-
-==== Script Representation
-
-[source,haskell]
-----
+```haskell
 -- Core script representation
 data Script = Script
   { scriptId        :: ScriptId           -- Unique identifier
@@ -510,12 +454,11 @@ data GrantPermission
   | GMWebRequest
   | GrantUnknown Text
   deriving (Show, Eq, Generic)
-----
+```
 
-==== Analysis Report
+### Analysis Report
 
-[source,haskell]
-----
+```haskell
 data AnalysisReport = AnalysisReport
   { reportId         :: ReportId
   , scriptHash       :: ContentHash
@@ -556,119 +499,129 @@ data Finding = Finding
   , references     :: [URL]
   , cweId          :: Maybe CWE
   }
-----
+```
 
-== Features
+# Features
 
-=== Current Features (v0.1.x)
+## Current Features (v0.1.x)
 
-[NOTE]
-====
-Checky Monkey is in early development. Current features are foundational.
-====
+> [!NOTE]
+> Checky Monkey is in early development. Current features are
+> foundational.
 
-* [x] Project scaffolding and infrastructure
-* [x] CI/CD pipeline with quality gates
-* [x] Dual licensing (PMPL-1.0 OR MPL-2.0)
-* [x] Basic documentation structure
-* [x] Community health files (CODE_OF_CONDUCT, CONTRIBUTING, SECURITY)
+- [x] Project scaffolding and infrastructure
 
-=== Planned Features
+- [x] CI/CD pipeline with quality gates
 
-See link:ROADMAP.adoc[ROADMAP.adoc] for detailed timelines and milestones.
+- [x] Dual licensing (PMPL-1.0 OR MPL-2.0)
 
-==== Phase 1: Foundation
+- [x] Basic documentation structure
 
-* [ ] Userscript metadata parser (Greasemonkey/Tampermonkey format)
-* [ ] Userstyle parser (Stylus format)
-* [ ] Basic static analysis engine
-* [ ] CUBS database schema and implementation
-* [ ] CLI for local script validation
+- [x] Community health files (CODE_OF_CONDUCT, CONTRIBUTING, SECURITY)
 
-==== Phase 2: Analysis Engine
+## Planned Features
 
-* [ ] Security analyzer (XSS, injection, dangerous APIs)
-* [ ] Privacy auditor (trackers, data exfiltration)
-* [ ] Performance profiler (DOM efficiency, resource usage)
-* [ ] Accessibility checker (WCAG compliance)
-* [ ] Compatibility matrix generator
+See <a href="ROADMAP.adoc" class="adoc">ROADMAP</a> for detailed
+timelines and milestones.
 
-==== Phase 3: Registry & Distribution
+### Phase 1: Foundation
 
-* [ ] Git-based script registry
-* [ ] IPFS integration for decentralized distribution
-* [ ] API (GraphQL + REST) for script queries
-* [ ] Integration with Greasy Fork and OpenUserJS
-* [ ] awesome-userscripts synchronization
+- [ ] Userscript metadata parser (Greasemonkey/Tampermonkey format)
 
-==== Phase 4: Community Platform
+- [ ] Userstyle parser (Stylus format)
 
-* [ ] Web frontend for browsing and searching
-* [ ] User accounts and script claiming
-* [ ] Rating and review system
-* [ ] Behavioral reports submission
-* [ ] Discussion forums per script
+- [ ] Basic static analysis engine
 
-==== Phase 5: Browser Integration
+- [ ] CUBS database schema and implementation
 
-* [ ] Checky Monkey browser extension
-* [ ] Tampermonkey integration
-* [ ] Violentmonkey integration
-* [ ] AdGuard integration
-* [ ] Real-time trust indicators
+- [ ] CLI for local script validation
 
-==== Phase 6: Developer Tools
+### Phase 2: Analysis Engine
 
-* [ ] ADE (Application Development Environment)
-* [ ] Best-practice template library
-* [ ] Pre-publish validation hooks
-* [ ] Documentation generator
-* [ ] Testing framework
+- [ ] Security analyzer (XSS, injection, dangerous APIs)
 
-==== Phase 7: AI Enhancement
+- [ ] Privacy auditor (trackers, data exfiltration)
 
-* [ ] SLM-powered documentation generation
-* [ ] Script improvement suggestions
-* [ ] ReScript transpilation assistance
-* [ ] Automated vulnerability remediation
+- [ ] Performance profiler (DOM efficiency, resource usage)
 
-== Installation
+- [ ] Accessibility checker (WCAG compliance)
 
-=== Prerequisites
+- [ ] Compatibility matrix generator
 
-[cols="1,1,2", options="header"]
-|===
-|Requirement |Version |Notes
+### Phase 3: Registry & Distribution
 
-|GHC
-|>= 9.6
-|Glasgow Haskell Compiler
+- [ ] Git-based script registry
 
-|Cabal
-|>= 3.10
-|Or Stack >= 2.13
+- [ ] IPFS integration for decentralized distribution
 
-|PostgreSQL
-|>= 15
-|For CUBS metadata storage
+- [ ] API (GraphQL + REST) for script queries
 
-|IPFS (Kubo)
-|>= 0.24
-|Optional, for decentralized distribution
+- [ ] Integration with Greasy Fork and OpenUserJS
 
-|Nix
-|>= 2.18
-|Optional, for reproducible builds
+- [ ] awesome-userscripts synchronization
 
-|Docker/Podman
-|Latest
-|Optional, for containerized deployment
-|===
+### Phase 4: Community Platform
 
-=== From Source (Cabal)
+- [ ] Web frontend for browsing and searching
 
-[source,bash]
-----
+- [ ] User accounts and script claiming
+
+- [ ] Rating and review system
+
+- [ ] Behavioral reports submission
+
+- [ ] Discussion forums per script
+
+### Phase 5: Browser Integration
+
+- [ ] Checky Monkey browser extension
+
+- [ ] Tampermonkey integration
+
+- [ ] Violentmonkey integration
+
+- [ ] AdGuard integration
+
+- [ ] Real-time trust indicators
+
+### Phase 6: Developer Tools
+
+- [ ] ADE (Application Development Environment)
+
+- [ ] Best-practice template library
+
+- [ ] Pre-publish validation hooks
+
+- [ ] Documentation generator
+
+- [ ] Testing framework
+
+### Phase 7: AI Enhancement
+
+- [ ] SLM-powered documentation generation
+
+- [ ] Script improvement suggestions
+
+- [ ] ReScript transpilation assistance
+
+- [ ] Automated vulnerability remediation
+
+# Installation
+
+## Prerequisites
+
+| Requirement   | Version  | Notes                                    |
+|---------------|----------|------------------------------------------|
+| GHC           | \>= 9.6  | Glasgow Haskell Compiler                 |
+| Cabal         | \>= 3.10 | Or Stack \>= 2.13                        |
+| PostgreSQL    | \>= 15   | For CUBS metadata storage                |
+| IPFS (Kubo)   | \>= 0.24 | Optional, for decentralized distribution |
+| Nix           | \>= 2.18 | Optional, for reproducible builds        |
+| Docker/Podman | Latest   | Optional, for containerized deployment   |
+
+## From Source (Cabal)
+
+```bash
 # Clone the repository
 git clone https://github.com/hyperpolymath/checky-monkey.git
 cd checky-monkey
@@ -682,12 +635,11 @@ cabal test all
 
 # Install
 cabal install
-----
+```
 
-=== From Source (Nix)
+## From Source (Nix)
 
-[source,bash]
-----
+```bash
 # Clone the repository
 git clone https://github.com/hyperpolymath/checky-monkey.git
 cd checky-monkey
@@ -700,12 +652,11 @@ nix develop
 
 # Run
 nix run
-----
+```
 
-=== Container Deployment
+## Container Deployment
 
-[source,bash]
-----
+```bash
 # Pull the image
 podman pull ghcr.io/hyperpolymath/checky-monkey:latest
 
@@ -718,12 +669,11 @@ podman run -d \
   -p 8080:8080 \
   -v checky-data:/var/lib/checky-monkey \
   ghcr.io/hyperpolymath/checky-monkey:latest
-----
+```
 
-=== Development Setup
+## Development Setup
 
-[source,bash]
-----
+```bash
 # Clone the repository
 git clone https://github.com/hyperpolymath/checky-monkey.git
 cd checky-monkey
@@ -746,14 +696,13 @@ just test
 # Format and lint
 just fmt
 just lint
-----
+```
 
-== Usage
+# Usage
 
-=== CLI Interface
+## CLI Interface
 
-[source,bash]
-----
+```bash
 # Validate a local script
 checky-monkey validate script.user.js
 
@@ -777,14 +726,13 @@ checky-monkey info script-id
 
 # Fetch from IPFS
 checky-monkey fetch ipfs://QmXyz...
-----
+```
 
-=== API Examples
+## API Examples
 
-==== GraphQL Query
+### GraphQL Query
 
-[source,graphql]
-----
+```graphql
 query GetScript($id: ID!) {
   script(id: $id) {
     id
@@ -816,12 +764,11 @@ query GetScript($id: ID!) {
     installCount
   }
 }
-----
+```
 
-==== REST API
+### REST API
 
-[source,bash]
-----
+```bash
 # Get script by ID
 curl https://api.checkymonkey.org/v1/scripts/abc123
 
@@ -835,82 +782,83 @@ curl https://api.checkymonkey.org/v1/scripts/abc123/analysis
 curl -X POST https://api.checkymonkey.org/v1/analyze \
   -H "Content-Type: application/javascript" \
   --data-binary @script.user.js
-----
+```
 
-=== Browser Extension
+## Browser Extension
 
 Once installed, the Checky Monkey extension:
 
-1. **Intercepts Installations**: When you click "Install" on Greasy Fork or similar, Checky Monkey checks the script first
-2. **Shows Trust Indicators**: Color-coded badges showing script trustworthiness
-3. **Provides Details on Demand**: Click for full analysis breakdown
-4. **Reports Anomalies**: Automatically reports suspicious behavior back to the community
+1.  **Intercepts Installations**: When you click "Install" on Greasy
+    Fork or similar, Checky Monkey checks the script first
 
-== Integration
+2.  **Shows Trust Indicators**: Color-coded badges showing script
+    trustworthiness
 
-=== awesome-userscripts Integration
+3.  **Provides Details on Demand**: Click for full analysis breakdown
 
-Checky Monkey maintains bidirectional synchronization with https://github.com/awesome-scripts/awesome-userscripts[awesome-userscripts]:
+4.  **Reports Anomalies**: Automatically reports suspicious behavior
+    back to the community
 
-* Scripts listed in awesome-userscripts are automatically indexed and analyzed
-* High-quality scripts validated by Checky Monkey can be nominated for inclusion
-* Validation status is reflected in awesome-userscripts via badges
+# Integration
 
-=== Scaffoldia Foundation
+## awesome-userscripts Integration
 
-Checky Monkey serves as the validation backbone for https://github.com/hyperpolymath/scaffoldia[Scaffoldia], providing:
+Checky Monkey maintains bidirectional synchronization with
+[awesome-userscripts](https://github.com/awesome-scripts/awesome-userscripts):
 
-* Trusted script registry for Scaffoldia's script recommendations
-* Validation APIs for Scaffoldia's quality gates
-* Shared identity and reputation systems
+- Scripts listed in awesome-userscripts are automatically indexed and
+  analyzed
 
-=== Script Manager Integration
+- High-quality scripts validated by Checky Monkey can be nominated for
+  inclusion
 
-[cols="1,1,2", options="header"]
-|===
-|Manager |Integration Level |Capabilities
+- Validation status is reflected in awesome-userscripts via badges
 
-|**Tampermonkey**
-|Deep
-|Pre-install validation, trust badges, auto-update verification
+## Scaffoldia Foundation
 
-|**Violentmonkey**
-|Deep
-|Pre-install validation, trust badges, behavioral monitoring
+Checky Monkey serves as the validation backbone for
+[Scaffoldia](https://github.com/hyperpolymath/scaffoldia), providing:
 
-|**Greasemonkey**
-|Moderate
-|Pre-install validation, trust badges
+- Trusted script registry for Scaffoldia’s script recommendations
 
-|**AdGuard**
-|Moderate
-|Filter list validation, trust verification
+- Validation APIs for Scaffoldia’s quality gates
 
-|**Stylus**
-|Basic
-|Style validation, security checks
+- Shared identity and reputation systems
 
-|**Userscripts (Safari)**
-|Basic
-|Pre-install validation
-|===
+## Script Manager Integration
 
-== Contributing
+| Manager | Integration Level | Capabilities |
+|----|----|----|
+| **Tampermonkey** | Deep | Pre-install validation, trust badges, auto-update verification |
+| **Violentmonkey** | Deep | Pre-install validation, trust badges, behavioral monitoring |
+| **Greasemonkey** | Moderate | Pre-install validation, trust badges |
+| **AdGuard** | Moderate | Filter list validation, trust verification |
+| **Stylus** | Basic | Style validation, security checks |
+| **Userscripts (Safari)** | Basic | Pre-install validation |
 
-We welcome contributions! Please see link:CONTRIBUTING.md[CONTRIBUTING.md] for guidelines.
+# Contributing
 
-=== Development Philosophy
+We welcome contributions! Please see
+<a href="CONTRIBUTING.md" class="md">CONTRIBUTING</a> for guidelines.
 
-* **Test First**: All new features require tests
-* **Type Safe**: Leverage Haskell's type system; if it compiles, it should work
-* **Document Thoroughly**: Code should be self-documenting; complex logic needs comments
-* **Security Conscious**: Security-sensitive code requires review by maintainers
-* **Accessible by Default**: All UI must meet WCAG 2.1 AA
+## Development Philosophy
 
-=== Getting Started
+- **Test First**: All new features require tests
 
-[source,bash]
-----
+- **Type Safe**: Leverage Haskell’s type system; if it compiles, it
+  should work
+
+- **Document Thoroughly**: Code should be self-documenting; complex
+  logic needs comments
+
+- **Security Conscious**: Security-sensitive code requires review by
+  maintainers
+
+- **Accessible by Default**: All UI must meet WCAG 2.1 AA
+
+## Getting Started
+
+```bash
 # Fork and clone
 git clone https://github.com/YOUR-USERNAME/checky-monkey.git
 cd checky-monkey
@@ -931,206 +879,210 @@ git commit -m "feat: add your feature"
 git push origin feature/your-feature
 
 # Open a Pull Request
-----
+```
 
-=== Contributor Covenant
+## Contributor Covenant
 
-This project adheres to the link:CODE_OF_CONDUCT.md[Contributor Covenant Code of Conduct]. By participating, you agree to uphold this code.
+This project adheres to the [Contributor Covenant Code of
+Conduct](CODE_OF_CONDUCT.md). By participating, you agree to uphold this
+code.
 
-== Security
+# Security
 
-=== Reporting Vulnerabilities
+## Reporting Vulnerabilities
 
-Please see link:SECURITY.md[SECURITY.md] for our security policy and how to report vulnerabilities responsibly.
+Please see <a href="SECURITY.md" class="md">SECURITY</a> for our
+security policy and how to report vulnerabilities responsibly.
 
-=== Security Principles
+## Security Principles
 
-* **Defense in Depth**: Multiple layers of validation and sandboxing
-* **Minimal Privilege**: Analyzers run with minimal permissions
-* **Transparency**: Analysis methodology is open and auditable
-* **No Trust Assumption**: Every script is treated as potentially malicious
+- **Defense in Depth**: Multiple layers of validation and sandboxing
 
-== Governance
+- **Minimal Privilege**: Analyzers run with minimal permissions
 
-=== Decision Making
+- **Transparency**: Analysis methodology is open and auditable
 
-* **Technical Decisions**: Consensus among core maintainers; RFCs for significant changes
-* **Community Decisions**: Open discussion; major changes require community input
-* **Security Decisions**: Handled privately by security team; disclosed after mitigation
+- **No Trust Assumption**: Every script is treated as potentially
+  malicious
 
-=== Core Team
+# Governance
 
-* **Hyper Polymath** (@hyperpolymath) - Project Lead
+## Decision Making
 
-=== Acknowledgments
+- **Technical Decisions**: Consensus among core maintainers; RFCs for
+  significant changes
 
-* The Greasy Fork and OpenUserJS communities
-* Contributors to awesome-userscripts
-* The Tampermonkey, Violentmonkey, and Greasemonkey projects
-* The Haskell community
+- **Community Decisions**: Open discussion; major changes require
+  community input
 
-== License
+- **Security Decisions**: Handled privately by security team; disclosed
+  after mitigation
+
+## Core Team
+
+- **Hyper Polymath** (@hyperpolymath) - Project Lead
+
+## Acknowledgments
+
+- The Greasy Fork and OpenUserJS communities
+
+- Contributors to awesome-userscripts
+
+- The Tampermonkey, Violentmonkey, and Greasemonkey projects
+
+- The Haskell community
+
+# License
 
 This project is dual-licensed:
 
-* **Palimpsest-MPL License v1.0 (PMPL-1.0)** - For maximum flexibility
-* **MPL-2.0** - For copyleft protection (especially for SaaS deployments)
+- **Palimpsest-MPL License v1.0 (PMPL-1.0)** - For maximum flexibility
 
-You may choose either license. See link:LICENSE.txt[LICENSE.txt] for full details.
+- **MPL-2.0** - For copyleft protection (especially for SaaS
+  deployments)
 
-=== Palimpsest Principles
+You may choose either license. See
+<a href="LICENSE.txt" class="txt">LICENSE</a> for full details.
 
-This project encourages (but does not legally require) adherence to the https://github.com/hyperpolymath/palimpsest-license[Palimpsest License] principles—a framework for consent-based digital interaction.
+## Palimpsest Principles
 
-== Related Projects
+This project encourages (but does not legally require) adherence to the
+[Palimpsest
+License](https://github.com/hyperpolymath/palimpsest-license)
+principles—a framework for consent-based digital interaction.
 
-* https://github.com/hyperpolymath/scaffoldia[Scaffoldia] - Project scaffolding and templates
-* https://github.com/awesome-scripts/awesome-userscripts[awesome-userscripts] - Curated userscript list
-* https://www.greasy fork.org[Greasy Fork] - Userscript hosting platform
-* https://openuserjs.org[OpenUserJS] - Open source userscript hosting
-* https://www.tampermonkey.net[Tampermonkey] - Popular userscript manager
-* https://violentmonkey.github.io[Violentmonkey] - Open source userscript manager
+# Related Projects
 
-== Appendices
+- [Scaffoldia](https://github.com/hyperpolymath/scaffoldia) - Project
+  scaffolding and templates
 
-=== Appendix A: Glossary
+- [awesome-userscripts](https://github.com/awesome-scripts/awesome-userscripts) -
+  Curated userscript list
 
-[glossary]
-Userscript:: A script that modifies web pages, typically managed by browser extensions like Tampermonkey
-Userstyle:: A CSS stylesheet that modifies web page appearance, typically managed by Stylus
-Content Script:: A script that runs in the context of web pages, part of browser extensions
-CUBS:: Content-addressed Universal Binary Store, Checky Monkey's database system
-CID:: Content Identifier, used by IPFS for content addressing
-Trust Score:: A composite metric representing overall script trustworthiness
-Grant Permission:: Special permissions requested by userscripts (e.g., cross-origin requests)
-Provenance:: The origin and history of a script, including all modifications
+- <https://www.greasy> fork.org\[Greasy Fork\] - Userscript hosting
+  platform
 
-=== Appendix B: Comparison with Alternatives
+- [OpenUserJS](https://openuserjs.org) - Open source userscript hosting
 
-[cols="1,1,1,1,1", options="header"]
-|===
-|Feature |Checky Monkey |VirusTotal |Greasy Fork |OpenUserJS
+- [Tampermonkey](https://www.tampermonkey.net) - Popular userscript
+  manager
 
-|**Userscript Focus**
-|Primary
-|None
-|Primary
-|Primary
+- [Violentmonkey](https://violentmonkey.github.io) - Open source
+  userscript manager
 
-|**Security Analysis**
-|Deep
-|Deep (general)
-|Basic
-|Basic
+# Appendices
 
-|**Privacy Analysis**
-|Yes
-|Limited
-|No
-|No
+## Appendix A: Glossary
 
-|**Accessibility**
-|Yes
-|No
-|No
-|No
+Userscript  
+A script that modifies web pages, typically managed by browser
+extensions like Tampermonkey
 
-|**Decentralized**
-|Yes (IPFS)
-|No
-|No
-|No
+Userstyle  
+A CSS stylesheet that modifies web page appearance, typically managed by
+Stylus
 
-|**Community Intel**
-|Yes
-|Yes
-|Yes
-|Yes
+Content Script  
+A script that runs in the context of web pages, part of browser
+extensions
 
-|**API Access**
-|Yes
-|Yes
-|Limited
-|Yes
+CUBS  
+Content-addressed Universal Binary Store, Checky Monkey’s database
+system
 
-|**Open Source**
-|Yes
-|No
-|Partial
-|Yes
-|===
+CID  
+Content Identifier, used by IPFS for content addressing
 
-=== Appendix C: File Format Support
+Trust Score  
+A composite metric representing overall script trustworthiness
 
-[cols="1,2,2", options="header"]
-|===
-|Extension |Type |Parser Status
+Grant Permission  
+Special permissions requested by userscripts (e.g., cross-origin
+requests)
 
-|`.user.js`
-|Tampermonkey/Greasemonkey userscript
-|Planned
+Provenance  
+The origin and history of a script, including all modifications
 
-|`.user.css`
-|Stylus userstyle
-|Planned
+## Appendix B: Comparison with Alternatives
 
-|`.user.styl`
-|Stylus (with preprocessor)
-|Planned
+| Feature               | Checky Monkey | VirusTotal     | Greasy Fork | OpenUserJS |
+|-----------------------|---------------|----------------|-------------|------------|
+| **Userscript Focus**  | Primary       | None           | Primary     | Primary    |
+| **Security Analysis** | Deep          | Deep (general) | Basic       | Basic      |
+| **Privacy Analysis**  | Yes           | Limited        | No          | No         |
+| **Accessibility**     | Yes           | No             | No          | No         |
+| **Decentralized**     | Yes (IPFS)    | No             | No          | No         |
+| **Community Intel**   | Yes           | Yes            | Yes         | Yes        |
+| **API Access**        | Yes           | Yes            | Limited     | Yes        |
+| **Open Source**       | Yes           | No             | Partial     | Yes        |
 
-|`.user.less`
-|LESS userstyle
-|Future
+## Appendix C: File Format Support
 
-|`.user.scss`
-|SCSS userstyle
-|Future
+| Extension     | Type                                 | Parser Status |
+|---------------|--------------------------------------|---------------|
+| `.user.js`    | Tampermonkey/Greasemonkey userscript | Planned       |
+| `.user.css`   | Stylus userstyle                     | Planned       |
+| `.user.styl`  | Stylus (with preprocessor)           | Planned       |
+| `.user.less`  | LESS userstyle                       | Future        |
+| `.user.scss`  | SCSS userstyle                       | Future        |
+| `.json` (MV3) | Browser extension manifest           | Future        |
 
-|`.json` (MV3)
-|Browser extension manifest
-|Future
-|===
-
-=== Appendix D: Trust Score Calculation
+## Appendix D: Trust Score Calculation
 
 The overall Trust Score is calculated as a weighted average:
 
-[source]
-----
-TrustScore = Σ(DimensionScore × Weight) / Σ(Weight)
+    TrustScore = Σ(DimensionScore × Weight) / Σ(Weight)
 
-Where:
-  Security:      Weight = 3.0  (Critical)
-  Privacy:       Weight = 3.0  (Critical)
-  Performance:   Weight = 2.0  (High)
-  Accessibility: Weight = 2.0  (High)
-  Usability:     Weight = 1.5  (Medium)
-  Compatibility: Weight = 1.5  (Medium)
-  Functionality: Weight = 1.5  (Medium)
-  Dependability: Weight = 1.5  (Medium)
+    Where:
+      Security:      Weight = 3.0  (Critical)
+      Privacy:       Weight = 3.0  (Critical)
+      Performance:   Weight = 2.0  (High)
+      Accessibility: Weight = 2.0  (High)
+      Usability:     Weight = 1.5  (Medium)
+      Compatibility: Weight = 1.5  (Medium)
+      Functionality: Weight = 1.5  (Medium)
+      Dependability: Weight = 1.5  (Medium)
 
-Community feedback adjusts the final score by up to ±10%
-----
+    Community feedback adjusts the final score by up to ±10%
 
-== See Also
+# See Also
 
-* link:ROADMAP.adoc[ROADMAP.adoc] - Development roadmap and milestones
-* link:CONTRIBUTING.md[CONTRIBUTING.md] - Contribution guidelines
-* link:CODE_OF_CONDUCT.md[CODE_OF_CONDUCT.md] - Community standards
-* link:SECURITY.md[SECURITY.md] - Security policy
-* link:docs/CITATIONS.adoc[CITATIONS.adoc] - How to cite this project
-* link:docs/ARCHITECTURE.adoc[ARCHITECTURE.adoc] - Detailed architecture documentation (coming soon)
-* link:docs/API.adoc[API.adoc] - API documentation (coming soon)
+- <a href="ROADMAP.adoc" class="adoc">ROADMAP</a> - Development roadmap
+  and milestones
 
-'''
+- <a href="CONTRIBUTING.md" class="md">CONTRIBUTING</a> - Contribution
+  guidelines
 
-[.text-center]
-**Built with care by https://github.com/hyperpolymath[Hyper Polymath] and contributors**
+- <a href="CODE_OF_CONDUCT.md" class="md">CODE_OF_CONDUCT</a> -
+  Community standards
 
-[.text-center]
-_"Trust, but verify. Then verify again."_
+- <a href="SECURITY.md" class="md">SECURITY</a> - Security policy
 
+- <a href="docs/CITATIONS.adoc" class="adoc">CITATIONS</a> - How to cite
+  this project
 
-== Architecture
+- <a href="docs/ARCHITECTURE.adoc" class="adoc">ARCHITECTURE</a> -
+  Detailed architecture documentation (coming soon)
 
-See link:TOPOLOGY.md[TOPOLOGY.md] for a visual architecture map and completion dashboard.
+- <a href="docs/API.adoc" class="adoc">API</a> - API documentation
+  (coming soon)
+
+------------------------------------------------------------------------
+
+<div class="text-center" wrapper="1">
+
+**Built with care by [Hyper Polymath](https://github.com/hyperpolymath)
+and contributors**
+
+</div>
+
+<div class="text-center" wrapper="1">
+
+*"Trust, but verify. Then verify again."*
+
+</div>
+
+# Architecture
+
+See <a href="TOPOLOGY.md" class="md">TOPOLOGY</a> for a visual
+architecture map and completion dashboard.
