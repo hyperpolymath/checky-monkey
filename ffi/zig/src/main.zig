@@ -37,12 +37,14 @@ pub const Result = enum(c_int) {
     null_pointer = 4,
 };
 
-/// Library handle (opaque to prevent direct access)
-pub const Handle = opaque {
-    // Internal state hidden from C
+/// Library handle. Exposed to C as an opaque `*Handle` pointer — callers never
+/// dereference it, so the field layout stays private in practice. (Declared as
+/// a struct rather than `opaque {}` because Zig opaque types cannot carry
+/// fields; the previous `opaque { ... fields ... }` form did not compile.)
+pub const Handle = struct {
+    // Internal state, hidden from C behind the opaque pointer.
     allocator: std.mem.Allocator,
     initialized: bool,
-    // Add your fields here
 };
 
 //==============================================================================
