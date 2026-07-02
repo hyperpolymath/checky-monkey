@@ -46,7 +46,7 @@ jobs:
             type=sha
       - name: Build and push
         id: push
-        uses: docker/build-push-action@f9f3042f7e2789586610d6e8b85c8f03e5195baf # v6
+        uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a # v6
         with:
           context: .
           file: ./Containerfile
@@ -56,7 +56,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
       - name: Attest container provenance
-        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2
+        uses: actions/attest-build-provenance@0f67c3f4856b2e3261c31976d6725780e5e4c373 # v4.1.1
         with:
           subject-name: ghcr.io/hyperpolymath/checky-monkey
           subject-digest: ${{ steps.push.outputs.digest }}
