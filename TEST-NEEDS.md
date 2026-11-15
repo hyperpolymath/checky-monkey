@@ -24,7 +24,7 @@ The only exercised native subject is the `ffi/zig/` library, with Zig 0.13.0 uni
 | 8 | Smoke | THIN | C consumer runs and calls symbols; no CLI/user-facing artifact |
 | 9 | Property-based / generative | ABSENT | No 1,000-case generators or shrinkers |
 | 10 | Mutation | THIN | Reusable C harness planted compile/runtime mutants; no subject-source mutation campaign/score |
-| 11 | Fuzz | ABSENT | `tests/fuzz/placeholder.txt` is **not** a fuzz test |
+| 11 | Fuzz | ABSENT | No executable fuzz harness or corpus; the former scorecard-only placeholder has been removed |
 | 12 | Contract / invariant | THIN | Public C status contract tested; Idris2/C/Zig layout not proven |
 | 13 | Regression | THIN | Specific BOM, false-pass, error-ownership regressions covered; defects elsewhere still missing cases |
 | 14 | Chaos / resilience | ABSENT | Allocation-failure injection and fault handling required before claiming resilience |
