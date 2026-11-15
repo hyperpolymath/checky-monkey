@@ -61,6 +61,12 @@ The only exercised native subject is the `ffi/zig/` library, with Zig 0.13.0 uni
 5. Add reproducible property generation with shrinking, coverage and source mutation, actual fuzz corpus once an untrusted parser exists, allocation failure/chaos, benchmarks and documented portability/compatibility matrices.
 6. Restore meaningful CI startup checks (governance, Hypatia, secret scanning, SonarCloud). A green Dogfood Gate does **not** compensate for any failed required check or absent workflow.
 
+## Governance, hooks and schema compatibility
+
+The installed hook surface on `main` is only four executable files under `hooks/` (SHA pins, permissions, CodeQL and workflow SPDX). The current standards source has **19 executable `.githooks/` files**, including `pre-commit`, `pre-push`, commit-message checking, staged secret scanning, format and K9 validators, an actions.lock validator and installer/uninstaller. Merely copying these is not an assurance result: executable bit, local `core.hooksPath` enablement and behavior under planted defects must be verified. **Hook parity is an open migration item**; workflow CI, not local hooks, is the non-optional merge control.
+
+The established `proven-tests-and-benches` evidence-report schema version 2 remains a **17 × 14 = 238-cell** reporting contract, despite the canonical taxonomy now having 18 categories. Category 18 is assessed explicitly above, but is not counted as a v2 certified report cell. A versioned schema migration with compatibility tests is required before 18 × 14 reports can be issued.
+
 ## Explicit limitations
 
 CRG grade and test completeness are **not established**. No % coverage metric exists for the entire product, nor can the current native unit tests establish security of userscript processing that has not been built. A cancelled, skipped, empty, setup-only or startup-failed job cannot become a passing test through a summary job. Work on product internals belongs to a scoped PR and must pass latest-head CI and reviewer threads before closure.
