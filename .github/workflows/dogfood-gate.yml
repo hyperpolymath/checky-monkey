@@ -51,7 +51,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: hyperpolymath/proven-tests-and-benches
-          ref: 5657cb8e7f4a4dde7c035f805caf6bda61237122
+          ref: b08185d39ee8fa9184518d01d1955d2bebec7adf
           path: .proven-tests
           persist-credentials: false
 
@@ -68,7 +68,7 @@ jobs:
         env:
           EXPECTED_SUBJECT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
           PROVEN_CICD_SHA: 26d8d6e5cd39b6977c84bb4bdbcc85ad50413f45
-          PROVEN_TESTS_SHA: 5657cb8e7f4a4dde7c035f805caf6bda61237122
+          PROVEN_TESTS_SHA: b08185d39ee8fa9184518d01d1955d2bebec7adf
           ZIG_PROJECT_DIR: ffi/zig
           ZIG_VERSION: 0.13.0
           PROVEN_TESTS_ROOT: .proven-tests
