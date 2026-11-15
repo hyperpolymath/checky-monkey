@@ -68,6 +68,30 @@ jobs:
             ffi/zig/zig-out/lib/libchecky_monkey.a -o "$RUNNER_TEMP/checky_abi_smoke"
           "$RUNNER_TEMP/checky_abi_smoke"
 
+      # Additive pilot of the canonical proven-tests-and-benches contract runner.
+      # Keep the existing native-ffi job id/context unchanged for branch rules.
+      # Promotion must repin to a reviewed, reachable published commit.
+      - name: Checkout Proven test contract at exact source revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: hyperpolymath/proven-tests-and-benches
+          ref: b8c80c5ee03f0c619678597d860db628eb85bb0d
+          path: .proven-tests
+          persist-credentials: false
+
+      - name: Verify Proven contract revision and run linked C consumer
+        shell: bash
+        env:
+          PROVEN_TESTS_SHA: b8c80c5ee03f0c619678597d860db628eb85bb0d
+          CC: zig cc
+        run: |
+          set -euo pipefail
+          test "$(git -C .proven-tests rev-parse HEAD)" = "$PROVEN_TESTS_SHA"
+          bash .proven-tests/integrations/contract/c-abi/run.sh \
+            ffi/zig/include/checky_monkey.h \
+            tests/abi/consumer.c \
+            ffi/zig/zig-out/lib/libchecky_monkey.a
+
       - name: Check Zig format and shell regression fixtures
         run: |
           zig fmt --check ffi/zig/build.zig ffi/zig/src/main.zig ffi/zig/test/integration_test.zig
