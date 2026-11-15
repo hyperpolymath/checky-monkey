@@ -23,7 +23,7 @@ The only exercised native subject is the `ffi/zig/` library, with Zig 0.13.0 uni
 | 7 | Lifecycle | THIN | Init/free, two live handles, borrowed/owned string; allocation failure, stale pointer, leak stress absent |
 | 8 | Smoke | THIN | C consumer runs and calls symbols; no CLI/user-facing artifact |
 | 9 | Property-based / generative | ABSENT | No 1,000-case generators or shrinkers |
-| 10 | Mutation | THIN | Reusable C harness planted compile/runtime mutants; no subject-source mutation campaign/score |
+| 10 | Mutation | ABSENT | Proven Tests self-tests plant mutations of the generic harness; Checky Monkey itself does not run a source mutation campaign or compute a score |
 | 11 | Fuzz | ABSENT | No executable fuzz harness or corpus; the former scorecard-only placeholder has been removed |
 | 12 | Contract / invariant | THIN | Public C status contract tested; Idris2/C/Zig layout not proven |
 | 13 | Regression | THIN | Specific BOM, false-pass, error-ownership regressions covered; defects elsewhere still missing cases |
