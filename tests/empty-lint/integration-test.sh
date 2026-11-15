@@ -33,7 +33,7 @@ find "$GITHUB_WORKSPACE" \
     -o -name '*.idr' -o -name '*.zig' -o -name '*.v' -o -name '*.jl' \
     -o -name '*.gleam' -o -name '*.hs' -o -name '*.ml' -o -name '*.sh' \
     -o -name '*.txt' \) \
-  -exec grep -aPl '^\xef\xbb\xbf' {} \; > /tmp/bom-results.txt 2>/dev/null
+  -exec grep -aPl '(*UTF)^\x{feff}' {} \; > /tmp/bom-results.txt 2>/dev/null
 BOM_EXIT=$?
 set -e
 

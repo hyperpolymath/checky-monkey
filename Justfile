@@ -15,17 +15,18 @@ project := "checky-monkey"
 default:
     @just --list --unsorted
 
-# BUILD: Compiles the bot kernel and its multi-language components.
+# BUILD: Builds the existing native Zig library. Product core is not implemented yet.
 build:
-    @echo "Orchestrating multi-language build (Rust/Zig/Idris)..."
+    @cd ffi/zig && zig build -Doptimize=ReleaseSafe
 
-# TEST: Executes the unified integration test suite.
+# TEST: Runs actual FFI unit/integration tests and regression fixtures.
 test:
-    @echo "Running verified bot tests..."
+    @cd ffi/zig && zig build test
+    @bash tests/empty-lint/test-runner.sh
 
-# FORMAT: Enforces ecosystem-wide coding standards.
+# FORMAT: Fails if Zig source is not formatted; never silently reports success.
 fmt:
-    @echo "Applying standard formatting..."
+    @zig fmt --check ffi/zig/build.zig ffi/zig/src/main.zig ffi/zig/test/integration_test.zig
 
 # Run panic-attacker pre-commit scan
 assail:
