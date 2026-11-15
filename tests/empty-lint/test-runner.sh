@@ -18,7 +18,7 @@ C0_PATTERN='\x00|[\x01-\x08\x0B\x0C\x0E-\x1F]'
 
 # Leading BOM pattern (separate check as required by issue #70)
 # U+FEFF BOM in UTF-8 is ef bb bf bytes
-LEADING_BOM_PATTERN='^\xef\xbb\xbf'
+LEADING_BOM_PATTERN='(*UTF)^\x{feff}'
 
 echo "====================================================================="
 echo "Empty-Linter Test Suite"

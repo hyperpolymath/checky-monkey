@@ -12,10 +12,10 @@ const VERSION = "0.1.0";
 const BUILD_INFO = "CHECKY_MONKEY built with Zig " ++ @import("builtin").zig_version_string;
 
 /// Thread-local error storage
-threadlocal var last_error: ?[]const u8 = null;
+threadlocal var last_error: ?[:0]const u8 = null;
 
 /// Set the last error message
-fn setError(msg: []const u8) void {
+fn setError(msg: [:0]const u8) void {
     last_error = msg;
 }
 
@@ -35,6 +35,7 @@ pub const Result = enum(c_int) {
     invalid_param = 2,
     out_of_memory = 3,
     null_pointer = 4,
+    unsupported = 5,
 };
 
 /// Library handle. Exposed to C as an opaque `*Handle` pointer — callers never
@@ -99,11 +100,11 @@ export fn checky_monkey_process(handle: ?*Handle, input: u32) Result {
         return .@"error";
     }
 
-    // Example processing logic
+    // The real userscript analysis pipeline does not exist yet.
+    // Never report success for an operation that has not been implemented.
     _ = input;
-
-    clearError();
-    return .ok;
+    setError("Processing is not implemented");
+    return .unsupported;
 }
 
 //==============================================================================
@@ -167,29 +168,23 @@ export fn checky_monkey_process_array(
         return .@"error";
     }
 
-    // Access the buffer
-    const data = buf[0..len];
-    _ = data;
-
-    // Process data here
-
-    clearError();
-    return .ok;
+    // Neither read the caller's raw buffer nor pretend it was processed.
+    _ = buf;
+    _ = len;
+    setError("Array processing is not implemented");
+    return .unsupported;
 }
 
 //==============================================================================
 // Error Handling
 //==============================================================================
 
-/// Get the last error message
-/// Returns null if no error
+/// Borrow the last error message from per-thread storage, or null.
+/// The returned pointer must NOT be freed; valid until the next operation
+/// that sets or clears the error on this thread.
 export fn checky_monkey_last_error() ?[*:0]const u8 {
     const err = last_error orelse return null;
-
-    // Return C string (static storage, no need to free)
-    const allocator = std.heap.c_allocator;
-    const c_str = allocator.dupeZ(u8, err) catch return null;
-    return c_str.ptr;
+    return err.ptr;
 }
 
 //==============================================================================
@@ -233,11 +228,10 @@ export fn checky_monkey_register_callback(
         return .@"error";
     }
 
-    // Store callback for later use
+    // Callback storage and invocation are not implemented.
     _ = cb;
-
-    clearError();
-    return .ok;
+    setError("Callback registration is not implemented");
+    return .unsupported;
 }
 
 //==============================================================================
@@ -273,4 +267,30 @@ test "version" {
     const ver = checky_monkey_version();
     const ver_str = std.mem.span(ver);
     try std.testing.expectEqualStrings(VERSION, ver_str);
+}
+
+test "unimplemented processing never reports success" {
+    const handle = checky_monkey_init() orelse return error.InitFailed;
+    defer checky_monkey_free(handle);
+
+    try std.testing.expectEqual(Result.unsupported, checky_monkey_process(handle, 42));
+    const process_error = checky_monkey_last_error() orelse return error.MissingError;
+    try std.testing.expectEqualStrings("Processing is not implemented", std.mem.span(process_error));
+
+    const bytes = [_]u8{ 0x01, 0x02, 0x03 };
+    try std.testing.expectEqual(Result.unsupported, checky_monkey_process_array(handle, &bytes, bytes.len));
+    try std.testing.expectEqual(Result.unsupported, checky_monkey_register_callback(handle, testCallback));
+}
+
+fn testCallback(_: u64, _: u32) callconv(.C) u32 {
+    return 0;
+}
+
+test "borrowed error message is stable and not heap allocated" {
+    try std.testing.expectEqual(Result.null_pointer, checky_monkey_process(null, 0));
+    const error_text = checky_monkey_last_error() orelse return error.MissingError;
+    try std.testing.expectEqualStrings("Null handle", std.mem.span(error_text));
+    const handle = checky_monkey_init() orelse return error.InitFailed;
+    defer checky_monkey_free(handle);
+    try std.testing.expect(checky_monkey_last_error() == null);
 }
