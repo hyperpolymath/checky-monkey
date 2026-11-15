@@ -59,7 +59,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: hyperpolymath/proven-cicd-and-workflows
-          ref: bffd2a7498b1fa7a3d2886d82b3d9f49e6a09e2b
+          ref: ed50b1eed7b4e11190615715777cab285bb5810c
           path: .proven-cicd
           persist-credentials: false
 
@@ -67,7 +67,7 @@ jobs:
         shell: bash
         env:
           EXPECTED_SUBJECT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
-          PROVEN_CICD_SHA: bffd2a7498b1fa7a3d2886d82b3d9f49e6a09e2b
+          PROVEN_CICD_SHA: ed50b1eed7b4e11190615715777cab285bb5810c
           PROVEN_TESTS_SHA: 6fb7bcb3ccd2933a13f0207b04e583317b2e9e2f
           ZIG_PROJECT_DIR: ffi/zig
           ZIG_TEST_ENTRY: src/main.zig
@@ -412,14 +412,14 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: hyperpolymath/proven-cicd-and-workflows
-          ref: bffd2a7498b1fa7a3d2886d82b3d9f49e6a09e2b
+          ref: ed50b1eed7b4e11190615715777cab285bb5810c
           path: .proven-cicd
           persist-credentials: false
 
       - name: Reject non-successful mandatory predecessor jobs
         shell: bash
         env:
-          PROVEN_CICD_SHA: bffd2a7498b1fa7a3d2886d82b3d9f49e6a09e2b
+          PROVEN_CICD_SHA: ed50b1eed7b4e11190615715777cab285bb5810c
           REQUIRED_JOB_IDS: |
             native-ffi
             deed-validate
