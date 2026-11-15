@@ -18,6 +18,62 @@ permissions:
 
 jobs:
   # ---------------------------------------------------------------------------
+  # Product tests must run before format/governance summaries. The native FFI
+  # is not the userscript validator; these checks prevent inert green results.
+  # ---------------------------------------------------------------------------
+  native-ffi:
+    name: Native Zig library build and C-ABI tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install checksum-verified Zig 0.13.0
+        shell: bash
+        run: |
+          set -euo pipefail
+          tarball="$RUNNER_TEMP/zig-linux-x86_64-0.13.0.tar.xz"
+          curl --fail --silent --show-error --location --retry 3 \
+            https://ziglang.org/download/0.13.0/zig-linux-x86_64-0.13.0.tar.xz \
+            -o "$tarball"
+          echo "d45312e61ebcc48032b77bc4cf7fd6915c11fa16e4aad116b66c9468211230ea  $tarball" | sha256sum -c -
+          tar -xf "$tarball" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/zig-linux-x86_64-0.13.0" >> "$GITHUB_PATH"
+
+      - name: Build native shared and static libraries
+        run: cd ffi/zig && zig build -Doptimize=ReleaseSafe
+
+      - name: Run native unit and linked integration tests
+        run: cd ffi/zig && zig build test
+
+      - name: Compile public C header consumer
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > "$RUNNER_TEMP/checky_abi_smoke.c" <<'EOF'
+          #include "checky_monkey.h"
+          _Static_assert(CHECKY_MONKEY_OK == 0, "ABI result drift");
+          _Static_assert(CHECKY_MONKEY_UNSUPPORTED == 5, "ABI result drift");
+          int main(void) {
+              checky_monkey_handle *handle = checky_monkey_init();
+              if (!handle) return 1;
+              checky_monkey_result result = checky_monkey_process(handle, 1);
+              checky_monkey_free(handle);
+              return result == CHECKY_MONKEY_UNSUPPORTED ? 0 : 2;
+          }
+          EOF
+          zig cc -std=c11 -Wall -Wextra -Werror \
+            -Iffi/zig/include "$RUNNER_TEMP/checky_abi_smoke.c" \
+            ffi/zig/zig-out/lib/libchecky_monkey.a -o "$RUNNER_TEMP/checky_abi_smoke"
+          "$RUNNER_TEMP/checky_abi_smoke"
+
+      - name: Check Zig format and shell regression fixtures
+        run: |
+          zig fmt --check ffi/zig/build.zig ffi/zig/src/main.zig ffi/zig/test/integration_test.zig
+          bash tests/empty-lint/test-runner.sh
+
+  # ---------------------------------------------------------------------------
   # Job 1: DEED manifest validation
   # ---------------------------------------------------------------------------
   deed-validate:
@@ -266,7 +322,7 @@ jobs:
   dogfood-summary:
     name: Dogfooding compliance summary
     runs-on: ubuntu-latest
-    needs: [deed-validate, k9-validate, empty-lint, groove-check]
+    needs: [native-ffi, deed-validate, k9-validate, empty-lint, groove-check]
     if: always()
 
     steps:
