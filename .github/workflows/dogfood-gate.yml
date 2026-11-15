@@ -51,7 +51,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: hyperpolymath/proven-tests-and-benches
-          ref: b08185d39ee8fa9184518d01d1955d2bebec7adf
+          ref: 7fe4e72acd6a84681151046c7e3bf168518efb58
           path: .proven-tests
           persist-credentials: false
 
@@ -59,7 +59,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: hyperpolymath/proven-cicd-and-workflows
-          ref: eda9b4ede40fef2c78e9357e38159cf9d9ef1eb8
+          ref: bffd2a7498b1fa7a3d2886d82b3d9f49e6a09e2b
           path: .proven-cicd
           persist-credentials: false
 
@@ -67,9 +67,10 @@ jobs:
         shell: bash
         env:
           EXPECTED_SUBJECT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
-          PROVEN_CICD_SHA: eda9b4ede40fef2c78e9357e38159cf9d9ef1eb8
-          PROVEN_TESTS_SHA: b08185d39ee8fa9184518d01d1955d2bebec7adf
+          PROVEN_CICD_SHA: bffd2a7498b1fa7a3d2886d82b3d9f49e6a09e2b
+          PROVEN_TESTS_SHA: 7fe4e72acd6a84681151046c7e3bf168518efb58
           ZIG_PROJECT_DIR: ffi/zig
+          ZIG_TEST_ENTRY: src/main.zig
           ZIG_VERSION: 0.13.0
           PROVEN_TESTS_ROOT: .proven-tests
           C_ABI_HEADER: ffi/zig/include/checky_monkey.h
@@ -411,14 +412,20 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: hyperpolymath/proven-cicd-and-workflows
-          ref: eda9b4ede40fef2c78e9357e38159cf9d9ef1eb8
+          ref: bffd2a7498b1fa7a3d2886d82b3d9f49e6a09e2b
           path: .proven-cicd
           persist-credentials: false
 
       - name: Reject non-successful mandatory predecessor jobs
         shell: bash
         env:
-          PROVEN_CICD_SHA: eda9b4ede40fef2c78e9357e38159cf9d9ef1eb8
+          PROVEN_CICD_SHA: bffd2a7498b1fa7a3d2886d82b3d9f49e6a09e2b
+          REQUIRED_JOB_IDS: |
+            native-ffi
+            deed-validate
+            k9-validate
+            empty-lint
+            groove-check
           REQUIRED_RESULTS: |
             native-ffi=${{ needs.native-ffi.result }}
             deed-validate=${{ needs.deed-validate.result }}
