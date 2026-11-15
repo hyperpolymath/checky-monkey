@@ -28,6 +28,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
 
       - name: Install checksum-verified Zig 0.13.0
         shell: bash
@@ -41,61 +44,46 @@ jobs:
           tar -xf "$tarball" -C "$RUNNER_TEMP"
           echo "$RUNNER_TEMP/zig-linux-x86_64-0.13.0" >> "$GITHUB_PATH"
 
-      - name: Build native shared and static libraries
-        run: cd ffi/zig && zig build -Doptimize=ReleaseSafe
-
-      - name: Run native unit and linked integration tests
-        run: cd ffi/zig && zig build test
-
-      - name: Compile public C header consumer
-        shell: bash
-        run: |
-          set -euo pipefail
-          cat > "$RUNNER_TEMP/checky_abi_smoke.c" <<'EOF'
-          #include "checky_monkey.h"
-          _Static_assert(CHECKY_MONKEY_OK == 0, "ABI result drift");
-          _Static_assert(CHECKY_MONKEY_UNSUPPORTED == 5, "ABI result drift");
-          int main(void) {
-              checky_monkey_handle *handle = checky_monkey_init();
-              if (!handle) return 1;
-              checky_monkey_result result = checky_monkey_process(handle, 1);
-              checky_monkey_free(handle);
-              return result == CHECKY_MONKEY_UNSUPPORTED ? 0 : 2;
-          }
-          EOF
-          zig cc -std=c11 -Wall -Wextra -Werror \
-            -Iffi/zig/include "$RUNNER_TEMP/checky_abi_smoke.c" \
-            ffi/zig/zig-out/lib/libchecky_monkey.a -o "$RUNNER_TEMP/checky_abi_smoke"
-          "$RUNNER_TEMP/checky_abi_smoke"
-
-      # Additive pilot of the canonical proven-tests-and-benches contract runner.
-      # Keep the existing native-ffi job id/context unchanged for branch rules.
-      # Promotion must repin to a reviewed, reachable published commit.
-      - name: Checkout Proven test contract at exact source revision
+      # Keep this existing job id and name stable for branch protection.
+      # Both pinned suites are candidate commits on live draft PRs. Repin to
+      # qualified, published SHAs before merge of this consuming PR.
+      - name: Checkout Proven Tests and Benches at exact commit
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: hyperpolymath/proven-tests-and-benches
-          ref: b8c80c5ee03f0c619678597d860db628eb85bb0d
+          ref: 5657cb8e7f4a4dde7c035f805caf6bda61237122
           path: .proven-tests
           persist-credentials: false
 
-      - name: Verify Proven contract revision and run linked C consumer
+      - name: Checkout Proven CI/CD and Workflows at exact commit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: hyperpolymath/proven-cicd-and-workflows
+          ref: 26d8d6e5cd39b6977c84bb4bdbcc85ad50413f45
+          path: .proven-cicd
+          persist-credentials: false
+
+      - name: Execute Proven native build, tests, formatting and ABI contract
         shell: bash
         env:
-          PROVEN_TESTS_SHA: b8c80c5ee03f0c619678597d860db628eb85bb0d
+          EXPECTED_SUBJECT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          PROVEN_CICD_SHA: 26d8d6e5cd39b6977c84bb4bdbcc85ad50413f45
+          PROVEN_TESTS_SHA: 5657cb8e7f4a4dde7c035f805caf6bda61237122
+          ZIG_PROJECT_DIR: ffi/zig
+          ZIG_VERSION: 0.13.0
+          PROVEN_TESTS_ROOT: .proven-tests
+          C_ABI_HEADER: ffi/zig/include/checky_monkey.h
+          C_ABI_CONSUMER: tests/abi/consumer.c
+          C_ABI_ARCHIVE: ffi/zig/zig-out/lib/libchecky_monkey.a
           CC: zig cc
         run: |
           set -euo pipefail
-          test "$(git -C .proven-tests rev-parse HEAD)" = "$PROVEN_TESTS_SHA"
-          bash .proven-tests/integrations/contract/c-abi/run.sh \
-            ffi/zig/include/checky_monkey.h \
-            tests/abi/consumer.c \
-            ffi/zig/zig-out/lib/libchecky_monkey.a
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SUBJECT_SHA"
+          test "$(git -C .proven-cicd rev-parse HEAD)" = "$PROVEN_CICD_SHA"
+          bash .proven-cicd/scripts/zig-native-ffi-gate.sh
 
-      - name: Check Zig format and shell regression fixtures
-        run: |
-          zig fmt --check ffi/zig/build.zig ffi/zig/src/main.zig ffi/zig/test/integration_test.zig
-          bash tests/empty-lint/test-runner.sh
+      - name: Test invisible-character regressions
+        run: bash tests/empty-lint/test-runner.sh
 
   # ---------------------------------------------------------------------------
   # Job 1: DEED manifest validation
