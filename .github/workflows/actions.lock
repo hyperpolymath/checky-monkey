@@ -21,8 +21,13 @@ workflows:
         - 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1'
         - 'hyperpolymath/deed-ecosystem@aa4b836bd969df2bc58128cb8e3d20bbc88d5e79'
         - 'hyperpolymath/k9-ecosystem@89f3c2702f4f650a92aa7411502f38da06abd562'
+    '.github/workflows/governance.yml': []
+    '.github/workflows/hypatia-scan.yml': []
     '.github/workflows/instant-sync.yml':
         - 'peter-evans/repository-dispatch@28959ce8df70de7be546dd1250a005dd32156697'
+    '.github/workflows/label-triage.yml': []
+    '.github/workflows/labels.yml': []
+    '.github/workflows/mirror.yml': []
     '.github/workflows/pages.yml':
         - 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1'
         - 'actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346'
@@ -36,6 +41,8 @@ workflows:
         - 'docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069'
     '.github/workflows/push-email-notify.yml':
         - 'hyperpolymath/smtp-notify-action@22e7bdb322c430c1d0dac6b3bb307f4bb139d0be'
+    '.github/workflows/scorecard.yml': []
+    '.github/workflows/secret-scanner.yml': []
     '.github/workflows/workflow-linter.yml':
         - 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1'
 dependencies:
